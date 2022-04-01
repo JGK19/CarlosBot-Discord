@@ -18,17 +18,24 @@ const client = axios.create({
 // Store for in-progress games. In production, you'd want to use a DB
 let activeGames = {};
 
-// Endpoint where Discord can send HTTP interactions
+/**
+ * Interactions endpoint URL where Discord will send HTTP requests
+ */
 app.post('/interactions', function (req, res) {
     // Interaction type and data
     let { type, id, data } = req.body;
 
-    // Handle PING requests
+    /**
+     * Handle verification requests
+     */
     if (type === InteractionType.PING) {
         return res.json({ "type": InteractionResponseType.PONG });
     }
 
-    // Handle any command requests
+    /**
+     * Handle slash command requests
+     * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
+     */
     if (type === InteractionType.APPLICATION_COMMAND){
         let { name } = data;
         // "test" guild command
@@ -41,96 +48,6 @@ app.post('/interactions', function (req, res) {
                     "content": "hello world " + getRandomEmoji()
                 }
             });
-        }
-        // "challenge" guild command
-        if (name === "challenge" && id) {
-            let userId = req.body.member.user.id;
-            // User's object choice
-            let objectName = req.body.data.options[0].value;
-
-            // Create active game using message ID as the game ID
-            activeGames[id] = {
-                "id": userId,
-                "objectName": objectName
-            };
-
-            return res.send({
-                "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                "data": {
-                    // Fetches a random emoji to send from a helper function
-                    "content": `Rock papers scissors challenge from <@${userId}>`,
-                    "components": [{
-                        "type": ComponentType.ACTION,
-                        "components": [{
-                            "type": ComponentType.BUTTON,
-                            // Append the game ID to use later on
-                            "custom_id": `accept_button_${req.body.id}`,
-                            "label": "Accept",
-                            "style": ButtonStyle.PRIMARY
-                        }]
-                    }]
-                }
-            });
-        }
-    }
-
-    // Handle interactive components
-    if (type === InteractionType.MESSAGE_COMPONENT){
-        // custom_id set in payload when sending message component
-        let componentId = data.custom_id;
-
-        if (componentId.startsWith('accept_button_')) {
-            // get the associated game ID
-            let gameId = componentId.replace('accept_button_', '');
-            let options = getShuffledOptions();
-            // Delete message with token in request body
-            let url = DiscordAPI(`/webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`);
-            client({ url, method: 'delete' }).catch(e => console.error(`Error deleting message: ${e}`));
-
-            return res.send({
-                "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                "data": {
-                    // Fetches a random emoji to send from a helper function
-                    "content": "What's your object of choice?",
-                    // Indicates it'll be an ephemeral message
-                    "flags": 64,
-                    "components": [{
-                        "type": ComponentType.ACTION,
-                        "components": [{
-                            "type": ComponentType.SELECT,
-                            // Append game ID
-                            "custom_id": `select_choice_${gameId}`,
-                            "options": options
-                        }]
-                    }]
-                }
-            });
-        } else if (componentId.startsWith('select_choice_')) {
-            // get the associated game ID
-            let gameId = componentId.replace('select_choice_', '');
-
-            if (activeGames[gameId]) {
-                // Get user ID and object choice for responding user
-                let userId = req.body.member.user.id;
-                let objectName = data.values[0];
-                // Calculate result from helper function
-                let resultStr = getResult(activeGames[gameId], {id: userId, objectName});
-
-                // Remove game from storage
-                delete activeGames[gameId];
-                // Update message with token in request body
-                let url = DiscordAPI(`/webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`);
-                client({ url, method: 'patch', data: {
-                    "content": `Nice choice ${getRandomEmoji()}`,
-                    "components": []
-                }}).catch(e => console.error(`Error deleting message: ${e}`));
-
-                // Send results
-                return res.send({
-                    "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                    "data": { "content": resultStr }
-                });
-            }
         }
     }
 });
