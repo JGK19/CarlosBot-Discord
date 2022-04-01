@@ -10,7 +10,7 @@
   "author": "Shay DeWael",
   "license": "MIT",
   "engines": {
-    "node": "17.x"
+    "node": "16.x"
   },
   "dependencies": {
     "axios": "^0.26.1",
