@@ -45,6 +45,7 @@ app.post('/interactions', function (req, res) {
         // "challenge" guild command
         if (name === "challenge" && id) {
             let userId = req.body.member.user.id;
+            // User's object choice
             let objectName = req.body.data.options[0].value;
 
             // Create active game using message ID as the game ID
@@ -80,7 +81,7 @@ app.post('/interactions', function (req, res) {
 
         if (componentId.startsWith('accept_button_')) {
             // get the associated game ID
-            let activeId = componentId.replace('accept_button_', '');
+            let gameId = componentId.replace('accept_button_', '');
             let options = getShuffledOptions();
             // Delete message with token in request body
             let url = DiscordAPI(`/webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`);
@@ -98,24 +99,25 @@ app.post('/interactions', function (req, res) {
                         "components": [{
                             "type": ComponentType.SELECT,
                             // Append game ID
-                            "custom_id": `select_choice_${activeId}`,
+                            "custom_id": `select_choice_${gameId}`,
                             "options": options
                         }]
                     }]
                 }
             });
         } else if (componentId.startsWith('select_choice_')) {
-            let activeId = componentId.replace('select_choice_', '');
-            if (activeGames[activeId]) {
+            // get the associated game ID
+            let gameId = componentId.replace('select_choice_', '');
+
+            if (activeGames[gameId]) {
                 // Get user ID and object choice for responding user
                 let userId = req.body.member.user.id;
                 let objectName = data.values[0];
                 // Calculate result from helper function
-                let result = getResult(activeGames[activeId], {id: userId, objectName});
+                let resultStr = getResult(activeGames[gameId], {id: userId, objectName});
 
                 // Remove game from storage
-                delete activeGames[activeId];
-
+                delete activeGames[gameId];
                 // Update message with token in request body
                 let url = DiscordAPI(`/webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`);
                 client({ url, method: 'patch', data: {
@@ -126,14 +128,13 @@ app.post('/interactions', function (req, res) {
                 // Send results
                 return res.send({
                     "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                    "data": { "content": result }
+                    "data": { "content": resultStr }
                 });
             }
         }
     }
 });
 
-// Start server on port 3000
 app.listen(3000, () => {
     console.log('Listening on port 3000');
 
