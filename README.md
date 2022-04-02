@@ -2,8 +2,10 @@
 
 This project contains a basic Rock-Paper-Scissors-style Discord app built for the [getting started guide](TODO).
 
+A version of this code is also hosted [on Glitch](TODO).
+
 ## Project structure
-Below is a basic overview of the project structure with brief explanations:
+Below is a basic overview of the project structure:
 
 ```
 ├── examples    -> short, feature-specific sample apps
@@ -24,7 +26,10 @@ Below is a basic overview of the project structure with brief explanations:
 ## Running app locally
 
 
-## Resources
-Dev resources
+## Other resources
+- Join the **[Discord Developers server](https://discord.gg/discord-developers)** to ask questions about the API, attend events hosted by the Discord API team, and interact with other devs.
+- Read **[the documentation](https://discord.com/developers/docs/intro)** for in-depth information about API features.
+- Check out **[community resources](https://discord.com/developers/docs/topics/community-resources#community-resources)** for language-specific tools maintained by community members.
+
 
 
