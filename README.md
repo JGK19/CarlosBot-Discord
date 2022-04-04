@@ -1,8 +1,8 @@
-# Getting started app for Discord
+# Getting Started app for Discord
 
-This project contains a basic Rock-Paper-Scissors-style Discord app built for the [getting started guide](TODO).
+This project contains a basic rock-paper-scissors-style Discord app written in JavaScript, built for the [getting started guide](TODO).
 
-A version of this code is also hosted [on Glitch](TODO).
+A version of this code is also hosted [on Glitch](https://glitch.com/edit/#!/getting-started-discord).
 
 ## Project structure
 Below is a basic overview of the project structure:
@@ -24,6 +24,13 @@ Below is a basic overview of the project structure:
 ```
 
 ## Running app locally
+
+If you haven't already, you'll need to [create a Discord app](https://discord.com/developers/applications) with the proper permissions:
+- `applications.commands`
+- `bot` (with Send Messages and Use Slash Commands enabled)
+
+This is covered in more detail in [the getting started guide](TODO).
+
 
 
 ## Other resources
