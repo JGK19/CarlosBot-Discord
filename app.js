@@ -21,10 +21,9 @@ let activeGames = {};
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  */
-app.post('/interaction', function (req, res) {
+app.post('/interactions', function (req, res) {
     // Interaction type and data
     let { type, id, data } = req.body;
-    console.log('hi')
 
     /**
      * Handle verification requests
@@ -37,44 +36,20 @@ app.post('/interaction', function (req, res) {
      * Handle slash command requests
      * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
      */
-//     if (type === InteractionType.APPLICATION_COMMAND){
-//       console.log('here')
-//         let { name } = data;
-//         // "test" guild command
-//         if (name === "test") {
-          
-//              // Respond to command in channel
-//             return res.send({
-//                 "type": InteractionResponseType.APPLICATION_MODAL,
-//                 "data": {
-//                     "custom_id": "my_modal",
-//                     "title": "Modal title",
-//                     "components": [
-//                         {
-//                             "type": ComponentType.ACTION,
-//                             "components": [
-//                                 {
-//                                     // See https://discord.com/developers/docs/interactions/message-components#text-inputs-text-input-structure
-//                                     "type": ComponentType.INPUT,
-//                                     "custom_id": "my_text",
-//                                     "style": 1,
-//                                     "label": "Type some text"
-//                                 },
-//                                 {
-//                                     // See https://discord.com/developers/docs/interactions/message-components#text-inputs-text-input-structure
-//                                     "type": ComponentType.INPUT,
-//                                     "custom_id": "my_long_text",
-//                                     "style": 2,
-//                                     "label": "Type some longer text"
-//                                 }
-//                             ]
-
-//                         }
-//                     ]
-//                 }
-//             });
-//         }
-//     }
+    if (type === InteractionType.APPLICATION_COMMAND){
+        let { name } = data;
+        // "test" guild command
+        if (name === "test") {
+             // Respond to command in channel
+            return res.send({
+                "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+                "data": {
+                    // Fetches a random emoji to send from a helper function
+                    "content": "hello world " + getRandomEmoji()
+                }
+            });
+        }
+    }
 });
 
 app.listen(3000, () => {
