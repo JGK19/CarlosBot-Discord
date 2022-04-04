@@ -2,7 +2,7 @@
 
 This project contains a basic rock-paper-scissors-style Discord app written in JavaScript, built for the [getting started guide](TODO).
 
-> A version of this code is also hosted **[on Glitch 🎏](https://glitch.com/edit/#!/getting-started-discord)**.
+> ✨ A version of this code is also hosted **[on Glitch 🎏](https://glitch.com/edit/#!/getting-started-discord)**.
 
 ## Project structure
 Below is a basic overview of the project structure:
@@ -85,12 +85,9 @@ Copy the forwarding address that starts with `https`, in this case `https://1234
 
 On the **General Information** tab, there will be an **Interactions Endpoint URL**. Paste your ngrok address there, and append `/interactions` to it (`https://1234-someurl.ngrok.io/interactions` in the example).
 
-Click **Save Changes**, and your app should be ready to run~
+Click **Save Changes**, and your app should be ready to run 🚀
 
 ## Other resources
 - Join the **[Discord Developers server](https://discord.gg/discord-developers)** to ask questions about the API, attend events hosted by the Discord API team, and interact with other devs.
 - Read **[the documentation](https://discord.com/developers/docs/intro)** for in-depth information about API features.
 - Check out **[community resources](https://discord.com/developers/docs/topics/community-resources#community-resources)** for language-specific tools maintained by community members.
-
-
-
