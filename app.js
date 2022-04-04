@@ -8,7 +8,7 @@ import { CHALLENGE_COMMAND, TEST_COMMAND, HasGuildCommands } from './commands.js
 // Create an express app
 const app = express();
 // Parse request body and verifies incoming requests using discord-interactions package
-app.use(express.json({verify: VerifyDiscordRequest(process.env.CLIENT_KEY)}));
+app.use(express.json({verify: VerifyDiscordRequest(process.env.PUBLIC_KEY)}));
 
 // Create HTTP client instance with token
 const client = axios.create({
@@ -16,12 +16,13 @@ const client = axios.create({
 });
 
 // Store for in-progress games. In production, you'd want to use a DB
-let activeGames = {};
+//let activeGames = {};
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  */
-app.post('/interactions', function (req, res) {
+app.post('/test', function (req, res) {
+  console.log('hi')
     // Interaction type and data
     let { type, id, data } = req.body;
 
