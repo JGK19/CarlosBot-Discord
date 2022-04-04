@@ -16,13 +16,12 @@ const client = axios.create({
 });
 
 // Store for in-progress games. In production, you'd want to use a DB
-//let activeGames = {};
+let activeGames = {};
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  */
 app.post('/test', function (req, res) {
-  console.log('hi')
     // Interaction type and data
     let { type, id, data } = req.body;
 
