@@ -25,11 +25,35 @@ Below is a basic overview of the project structure:
 
 ## Running app locally
 
-If you haven't already, you'll need to [create a Discord app](https://discord.com/developers/applications) with the proper permissions:
+Before you start, you'll need to [create a Discord app](https://discord.com/developers/applications) with the proper permissions:
 - `applications.commands`
 - `bot` (with Send Messages and Use Slash Commands enabled)
 
-This is covered in more detail in [the getting started guide](TODO).
+Configuring the app is covered in detail in [the getting started guide](TODO).
+### Setup project
+
+First clone the project:
+```
+git clone https://github.com/shaydewael/discord-getting-started.git
+```
+
+Then navigate to its directory and install dependencies:
+```
+cd discord-getting-started
+npm install
+```
+### Get app credentials
+
+Fetch the credentials from your app's settings and add them to a `.env` file (see `.env.sample` for an example). You'll need your app ID (`APP_ID`), server ID (`GUILD_ID`), bot token (`DISCORD_TOKEN`), and public key (`PUBLIC_KEY`).
+
+Fetching credentials is covered in detail in [the getting started guide](TODO).
+
+
+
+
+
+then install the dependencies:
+
 
 
 
