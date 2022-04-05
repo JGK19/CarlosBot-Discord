@@ -1,6 +1,6 @@
 import express from 'express'
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
-import { VerifyDiscordRequest, ComponentType, ButtonStyle } from './utils.js';
+import { VerifyDiscordRequest, ComponentType } from './utils.js';
 
 // Create and configure express app
 const app = express();
@@ -20,15 +20,26 @@ app.post('/interactions', function (req, res) {
                 "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
                 "data": {
                     "content": 'A message with a button',
-                    // Buttons are inside of action rows
+                    // Selects are inside of action rows
                     "components": [{
                         "type": ComponentType.ACTION,
                         "components": [{
-                            "type": ComponentType.BUTTON,
-                            // Value for your app to identify the button
-                            "custom_id": "my_button",
-                            "label": "Click",
-                            "style": ButtonStyle.PRIMARY
+                            "type": ComponentType.SELECT,
+                            // Value for your app to identify the select menu interactions
+                            "custom_id": "my_select",
+                            // Select options - see https://discord.com/developers/docs/interactions/message-components#select-menu-object-select-option-structure
+                            "options": [
+                                {
+                                    "label": "Option #1",
+                                    "value": "option_1",
+                                    "description": "The very first option"
+                                },
+                                {
+                                    "label": "Second option",
+                                    "value": "option_2",
+                                    "description": "The second AND last option"
+                                }
+                            ]
                         }]
                     }]
                 }
@@ -42,14 +53,18 @@ app.post('/interactions', function (req, res) {
     if (type === InteractionType.MESSAGE_COMPONENT){
         // custom_id set in payload when sending message component
         let componentId = data.custom_id;
-        // user who clicked button
-        let userId = req.body.member.user.id;
 
-        if (componentId === 'my_button') {
+        if (componentId === 'my_select') {
             console.log(req.body);
+
+            // Get selected option from payload
+            let selectedOption = data.values[0];
+            let userId = req.body.member.user.id;
+
+            // Send results
             return res.send({
                 "type": InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-                "data": { "content": `<@${userId} clicked the button` }
+                "data": { "content": `<@${userId}> selected ${selectedOption}` }
             });
         }
     }

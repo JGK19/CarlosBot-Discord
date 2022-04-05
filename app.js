@@ -56,5 +56,5 @@ app.listen(3000, () => {
     console.log('Listening on port 3000');
 
     // Check if guild commands from commands.json are installed (if not, install them)
-    //HasGuildCommands(client, process.env.APP_ID, process.env.GUILD_ID, [TEST_COMMAND, CHALLENGE_COMMAND]);
+    HasGuildCommands(client, process.env.APP_ID, process.env.GUILD_ID, [TEST_COMMAND, CHALLENGE_COMMAND]);
 });
