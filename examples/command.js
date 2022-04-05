@@ -25,7 +25,7 @@ app.post('/interactions', function (req, res) {
     }
 });
 
-function createCommand() {
+async function createCommand() {
     let appId = process.env.APP_ID;
     let guildId = process.env.GUILD_ID;
     
@@ -33,13 +33,13 @@ function createCommand() {
      * Globally-scoped slash commands (generally only recommended for production)
      * See https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
      */
-    // const globalUrl = DiscordAPI(`applications/${appId}/commands`);
+    // const globalUrl = `https://discord.com/api/v9/applications/${appId}/commands`;
     
     /**
      * Guild-scoped slash commands
      * See https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command
      */
-    const guildUrl = DiscordAPI(`applications/${appId}/guilds/${guildId}/commands`);
+    const guildUrl = `https://discord.com/api/v9/applications/${appId}/guilds/${guildId}/commands`;
     let commandBody = {
         "name": "test",
         "description": "Just your average command",
