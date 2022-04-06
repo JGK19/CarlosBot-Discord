@@ -23,7 +23,7 @@ let activeGames = {};
  */
 app.post('/interactions', function (req, res) {
     // Interaction type and data
-    let { type, id, data } = req.body;
+    const { type, id, data } = req.body;
 
     /**
      * Handle verification requests
@@ -37,7 +37,7 @@ app.post('/interactions', function (req, res) {
      * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
      */
     if (type === InteractionType.APPLICATION_COMMAND){
-        let { name } = data;
+        const { name } = data;
         // "test" guild command
         if (name === "test") {
              // Respond to command in channel

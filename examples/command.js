@@ -1,6 +1,6 @@
 import express from 'express'
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
-import { VerifyDiscordRequest } from './utils.js';
+import { VerifyDiscordRequest, DiscordAPI } from './utils.js';
 import axios from 'axios';
 
 // Create and configure express app
@@ -9,7 +9,7 @@ app.use(express.json({verify: VerifyDiscordRequest(process.env.PUBLIC_KEY)}));
 
 app.post('/interactions', function (req, res) {
     // Interaction type and data
-    let { type, data } = req.body;
+    const { type, data } = req.body;
     /**
      * Handle slash command requests
      */
@@ -26,21 +26,21 @@ app.post('/interactions', function (req, res) {
 });
 
 async function createCommand() {
-    let appId = process.env.APP_ID;
-    let guildId = process.env.GUILD_ID;
+    const appId = process.env.APP_ID;
+    const guildId = process.env.GUILD_ID;
     
     /**
      * Globally-scoped slash commands (generally only recommended for production)
      * See https://discord.com/developers/docs/interactions/application-commands#create-global-application-command
      */
-    // const globalUrl = `https://discord.com/api/v9/applications/${appId}/commands`;
+    // const globalUrl = DiscordAPI(`applications/${appId}/commands`);
     
     /**
      * Guild-scoped slash commands
      * See https://discord.com/developers/docs/interactions/application-commands#create-guild-application-command
      */
-    const guildUrl = `https://discord.com/api/v9/applications/${appId}/guilds/${guildId}/commands`;
-    let commandBody = {
+    const guildUrl = DiscordAPI(`applications/${appId}/guilds/${guildId}/commands`);
+    const commandBody = {
         "name": "test",
         "description": "Just your average command",
         // chat command (see https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-types)

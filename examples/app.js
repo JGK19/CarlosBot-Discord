@@ -1,4 +1,4 @@
-import express, { json } from 'express'
+import express from 'express'
 import axios from 'axios';
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
 import { VerifyDiscordRequest, getRandomEmoji, ComponentType, ButtonStyle, DiscordAPI } from './utils.js';
@@ -16,20 +16,20 @@ const client = axios.create({
 });
 
 // Store for in-progress games. In production, you'd want to use a DB
-let activeGames = {};
+const activeGames = {};
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
  */
 app.post('/interactions', function (req, res) {
     // Interaction type and data
-    let { type, id, data } = req.body;
+    const { type, id, data } = req.body;
 
     /**
      * Handle verification requests
      */
     if (type === InteractionType.PING) {
-        return res.json({ "type": InteractionResponseType.PONG });
+        return res.send({ "type": InteractionResponseType.PONG });
     }
 
     /**
@@ -37,7 +37,7 @@ app.post('/interactions', function (req, res) {
      * See https://discord.com/developers/docs/interactions/application-commands#slash-commands
      */
     if (type === InteractionType.APPLICATION_COMMAND){
-        let { name } = data;
+        const { name } = data;
         
         // "test" guild command
         if (name === "test") {
@@ -52,9 +52,9 @@ app.post('/interactions', function (req, res) {
         }
         // "challenge" guild command
         if (name === "challenge" && id) {
-            let userId = req.body.member.user.id;
+            const userId = req.body.member.user.id;
             // User's object choice
-            let objectName = req.body.data.options[0].value;
+            const objectName = req.body.data.options[0].value;
 
             // Create active game using message ID as the game ID
             activeGames[id] = {
