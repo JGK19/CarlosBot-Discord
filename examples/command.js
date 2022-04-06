@@ -1,6 +1,6 @@
 import express from 'express'
 import { InteractionType, InteractionResponseType } from 'discord-interactions';
-import { VerifyDiscordRequest, DiscordAPI } from './utils.js';
+import { VerifyDiscordRequest, DiscordAPI } from '../utils.js';
 import axios from 'axios';
 
 // Create and configure express app
@@ -25,7 +25,7 @@ app.post('/interactions', function (req, res) {
     }
 });
 
-async function createCommand() {
+function createCommand() {
     const appId = process.env.APP_ID;
     const guildId = process.env.GUILD_ID;
     
