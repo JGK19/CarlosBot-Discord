@@ -1,10 +1,10 @@
 import { getRPSChoices } from "./game.js";
 import { capitalize, DiscordAPI } from "./utils.js";
 
-export function HasGuildCommands(client, appId, guildId, commands) {
+export async function HasGuildCommands(client, appId, guildId, commands) {
     if (guildId === '' || appId === '') return;
 
-    commands.forEach((c) => HasGuildCommand(client, appId, guildId, c));
+    commands.forEach(c => HasGuildCommand(client, appId, guildId, c));
 }
 
 // Checks for a command
