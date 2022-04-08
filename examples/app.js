@@ -1,12 +1,12 @@
 import express from 'express';
-import { InteractionType, InteractionResponseType, InteractionResponseFlags } from 'discord-interactions';
 import {
-  VerifyDiscordRequest,
-  getRandomEmoji,
-  ComponentType,
-  ButtonStyle,
-  DiscordRequest,
-} from './utils.js';
+  InteractionType,
+  InteractionResponseType,
+  InteractionResponseFlags,
+  MessageComponentTypes,
+  ButtonStyleTypes,
+} from 'discord-interactions';
+import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
 import {
   CHALLENGE_COMMAND,
@@ -63,7 +63,7 @@ app.post('/interactions', async function (req, res) {
       // Create active game using message ID as the game ID
       activeGames[id] = {
         id: userId,
-        objectName: objectName,
+        objectName,
       };
 
       return res.send({
@@ -73,14 +73,14 @@ app.post('/interactions', async function (req, res) {
           content: `Rock papers scissors challenge from <@${userId}>`,
           components: [
             {
-              type: ComponentType.ACTION,
+              type: MessageComponentTypes.ACTION_ROW,
               components: [
                 {
-                  type: ComponentType.BUTTON,
+                  type: MessageComponentTypes.BUTTON,
                   // Append the game ID to use later on
                   custom_id: `accept_button_${req.body.id}`,
                   label: 'Accept',
-                  style: ButtonStyle.PRIMARY,
+                  style: ButtonStyleTypes.PRIMARY,
                 },
               ],
             },
@@ -113,10 +113,10 @@ app.post('/interactions', async function (req, res) {
             flags: InteractionResponseFlags.EPHEMERAL,
             components: [
               {
-                type: ComponentType.ACTION,
+                type: MessageComponentTypes.ACTION_ROW,
                 components: [
                   {
-                    type: ComponentType.SELECT,
+                    type: MessageComponentTypes.STRING_SELECT,
                     // Append game ID
                     custom_id: `select_choice_${gameId}`,
                     options: getShuffledOptions(),
@@ -126,7 +126,7 @@ app.post('/interactions', async function (req, res) {
             ],
           },
         });
-
+        // Delete previous message
         await DiscordRequest(endpoint, { method: 'DELETE' });
       } catch (err) {
         console.error('Error sending message:', err);
@@ -156,13 +156,13 @@ app.post('/interactions', async function (req, res) {
             type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
             data: { content: resultStr },
           });
-
+          // Update ephemeral message
           await DiscordRequest(endpoint, {
             method: 'PATCH',
             body: {
-              content: "Nice choice " + getRandomEmoji(),
-              components: []
-            }
+              content: 'Nice choice ' + getRandomEmoji(),
+              components: [],
+            },
           });
         } catch (err) {
           console.error('Error sending message:', err);

@@ -1,12 +1,12 @@
 import express from 'express';
-import { InteractionType, InteractionResponseType, InteractionResponseFlags } from 'discord-interactions';
 import {
-  VerifyDiscordRequest,
-  getRandomEmoji,
-  ComponentType,
-  ButtonStyle,
-  DiscordRequest,
-} from './utils.js';
+  InteractionType,
+  InteractionResponseType,
+  InteractionResponseFlags,
+  MessageComponentTypes,
+  ButtonStyleTypes,
+} from 'discord-interactions';
+import { VerifyDiscordRequest, getRandomEmoji, DiscordRequest } from './utils.js';
 import { getShuffledOptions, getResult } from './game.js';
 import {
   CHALLENGE_COMMAND,
