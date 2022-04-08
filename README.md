@@ -2,7 +2,7 @@
 
 This project contains a basic rock-paper-scissors-style Discord app written in JavaScript, built for the [getting started guide](https://discord.com/developers/docs/getting-started).
 
-![Demo of app](https://raw.githubusercontent.com/shaydewael/discord-getting-started/main/assets/getting-started-demo.gif)
+![Demo of app](https://raw.githubusercontent.com/discord/discord-example-app/main/assets/getting-started-demo.gif)
 
 ## Project structure
 Below is a basic overview of the project structure:
@@ -35,7 +35,7 @@ Configuring the app is covered in detail in [the getting started guide](https://
 
 First clone the project:
 ```
-git clone https://github.com/shaydewael/discord-getting-started.git
+git clone https://github.com/discord/discord-example-app.git
 ```
 
 Then navigate to its directory and install dependencies:
