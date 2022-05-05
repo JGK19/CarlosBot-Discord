@@ -2,14 +2,15 @@
 
 This project contains a basic rock-paper-scissors-style Discord app written in JavaScript, built for the [getting started guide](https://discord.com/developers/docs/getting-started).
 
-![Demo of app](https://raw.githubusercontent.com/discord/discord-example-app/main/assets/getting-started-demo.gif)
+![Demo of app](/assets/getting-started-demo.gif?raw=true)
+
+> ✨ A version of this code is also hosted **[on Glitch 🎏](https://glitch.com/~getting-started-discord)** and **[on Replit 🌀](https://replit.com/@shaydewael/discord-example-app)**
 
 ## Project structure
 Below is a basic overview of the project structure:
 
 ```
 ├── examples    -> short, feature-specific sample apps
-│   ├── app.js  -> finished app
 │   ├── button.js
 │   ├── command.js
 │   ├── modal.js
@@ -28,9 +29,9 @@ Below is a basic overview of the project structure:
 
 Before you start, you'll need to [create a Discord app](https://discord.com/developers/applications) with the proper permissions:
 - `applications.commands`
-- `bot` (with Send Messages and Use Slash Commands enabled)
+- `bot` (with Send Messages enabled)
 
-Configuring the app is covered in detail in [the getting started guide](https://discord.com/developers/docs/getting-started).
+Configuring the app is covered in detail in the [getting started guide](https://discord.com/developers/docs/getting-started).
 ### Setup project
 
 First clone the project:
@@ -47,7 +48,9 @@ npm install
 
 Fetch the credentials from your app's settings and add them to a `.env` file (see `.env.sample` for an example). You'll need your app ID (`APP_ID`), server ID (`GUILD_ID`), bot token (`DISCORD_TOKEN`), and public key (`PUBLIC_KEY`).
 
-Fetching credentials is covered in detail in [the getting started guide](https://discord.com/developers/docs/getting-started).
+Fetching credentials is covered in detail in the [getting started guide](https://discord.com/developers/docs/getting-started).
+
+> 🔑 Environment variables can be added to the `.env` file in Glitch or when developing locally, and in the Secrets tab in Replit (the lock icon on the left).
 
 ### Run the app
 
