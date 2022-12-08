@@ -133,9 +133,7 @@ app.post("/interactions", async function (req, res) {
       } catch (err) {
         console.error("Error sending message:", err);
       }
-    }
-    
-    else if (componentId.startsWith('select_choice_')) {
+    }else if (componentId.startsWith('select_choice_')) {
     // get the associated game ID
     const gameId = componentId.replace('select_choice_', '');
 
@@ -173,9 +171,8 @@ app.post("/interactions", async function (req, res) {
       }
     }
   }
-}
-    
-  }
+}    
+  
 });
 
 app.listen(PORT, () => {
