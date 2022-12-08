@@ -20,8 +20,6 @@ import {
 
 // Create an express app
 const app = express();
-// Get port, or default to 3000
-const PORT = process.env.PORT || 3000;
 // Parse request body and verifies incoming requests using discord-interactions package
 app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 
@@ -96,6 +94,10 @@ app.post("/interactions", async function (req, res) {
     }
   }
 
+  /**
+   * Handle requests from interactive components
+   * See https://discord.com/developers/docs/interactions/message-components#responding-to-a-component-interaction
+   */
   if (type === InteractionType.MESSAGE_COMPONENT) {
     // custom_id set in payload when sending message component
     const componentId = data.custom_id;
@@ -133,50 +135,49 @@ app.post("/interactions", async function (req, res) {
       } catch (err) {
         console.error("Error sending message:", err);
       }
-    }else if (componentId.startsWith('select_choice_')) {
-    // get the associated game ID
-    const gameId = componentId.replace('select_choice_', '');
+    } else if (componentId.startsWith("select_choice_")) {
+      // get the associated game ID
+      const gameId = componentId.replace("select_choice_", "");
 
-    if (activeGames[gameId]) {
-      // Get user ID and object choice for responding user
-      const userId = req.body.member.user.id;
-      const objectName = data.values[0];
-      // Calculate result from helper function
-      const resultStr = getResult(activeGames[gameId], {
-        id: userId,
-        objectName,
-      });
-
-      // Remove game from storage
-      delete activeGames[gameId];
-      // Update message with token in request body
-      const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
-
-      try {
-        // Send results
-        await res.send({
-          type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-          data: { content: resultStr },
+      if (activeGames[gameId]) {
+        // Get user ID and object choice for responding user
+        const userId = req.body.member.user.id;
+        const objectName = data.values[0];
+        // Calculate result from helper function
+        const resultStr = getResult(activeGames[gameId], {
+          id: userId,
+          objectName,
         });
-        // Update ephemeral message
-        await DiscordRequest(endpoint, {
-          method: 'PATCH',
-          body: {
-            content: 'Nice choice ' + getRandomEmoji(),
-            components: []
-          }
-        });
-      } catch (err) {
-        console.error('Error sending message:', err);
+
+        // Remove game from storage
+        delete activeGames[gameId];
+        // Update message with token in request body
+        const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
+
+        try {
+          // Send results
+          await res.send({
+            type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+            data: { content: resultStr },
+          });
+          // Update ephemeral message
+          await DiscordRequest(endpoint, {
+            method: "PATCH",
+            body: {
+              content: "Nice choice " + getRandomEmoji(),
+              components: [],
+            },
+          });
+        } catch (err) {
+          console.error("Error sending message:", err);
+        }
       }
     }
   }
-}    
-  
 });
 
-app.listen(PORT, () => {
-  console.log("Listening on port", PORT);
+app.listen(3000, () => {
+  console.log("Listening on port 3000");
 
   // Check if guild commands from commands.json are installed (if not, install them)
   HasGuildCommands(process.env.APP_ID, process.env.GUILD_ID, [
