@@ -90,6 +90,7 @@ app.post('/interactions', async function (req, res) {
     }
   }
 
+  
   /**
    * Handle requests from interactive components
    * See https://discord.com/developers/docs/interactions/message-components#responding-to-a-component-interaction
