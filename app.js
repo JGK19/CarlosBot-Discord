@@ -8,10 +8,11 @@ import {
 import {
   VerifyDiscordRequest,
   DiscordRequest,
+  getRandomEmoji,
 } from "./utils.js";
 import { HasGuildCommands } from "./install.js";
 import { commandslist } from "./commandslist.js";
-import { activeGames, getShuffledOptions } from "./commands/challenge.js";
+import { activeGames, getResult, getShuffledOptions } from "./commands/challenge.js";
 
 // Create an express app
 const app = express();
