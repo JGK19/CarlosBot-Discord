@@ -15,6 +15,7 @@ import { getShuffledOptions, getResult } from "./game.js";
 import {
   CHALLENGE_COMMAND,
   TEST_COMMAND,
+  TESTANDO_COMMAND,
   HasGuildCommands,
 } from "./commands.js";
 
@@ -193,5 +194,6 @@ app.listen(3000, () => {
   HasGuildCommands(process.env.APP_ID, process.env.GUILD_ID, [
     TEST_COMMAND,
     CHALLENGE_COMMAND,
+    TESTANDO_COMMAND,
   ]);
 });
