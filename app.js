@@ -15,7 +15,6 @@ import { getShuffledOptions, getResult } from "./game.js";
 import {
   CHALLENGE_COMMAND,
   TEST_COMMAND,
-  TESTANDO_COMMAND,
   HasGuildCommands,
 } from "./commands.js";
 
@@ -90,16 +89,6 @@ app.post("/interactions", async function (req, res) {
               ],
             },
           ],
-        },
-      });
-    }
-    if (name === "testando") {
-      // Send a message into the channel where command was triggered from
-      return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-          // Fetches a random emoji to send from a helper function
-          content: "hello world " + getRandomEmoji(),
         },
       });
     }
@@ -194,6 +183,5 @@ app.listen(3000, () => {
   HasGuildCommands(process.env.APP_ID, process.env.GUILD_ID, [
     TEST_COMMAND,
     CHALLENGE_COMMAND,
-    TESTANDO_COMMAND,
   ]);
 });
