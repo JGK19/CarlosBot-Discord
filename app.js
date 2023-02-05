@@ -11,14 +11,12 @@ import {
 } from "./utils.js";
 import { HasGuildCommands } from "./install.js";
 import { commandslist } from "./commandslist.js";
+import { activeGames, getShuffledOptions } from "./commands/challenge.js";
 
 // Create an express app
 const app = express();
 // Parse request body and verifies incoming requests using discord-interactions package
 app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
-
-// Store for in-progress games. In production, you'd want to use a DB
-const activeGames = {};
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests

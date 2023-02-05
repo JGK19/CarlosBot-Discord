@@ -1,3 +1,5 @@
+import { InteractionResponseType } from "discord-interactions";
+
 export function test(req, res) {
   // Send a message into the channel where command was triggered from
   return res.send({
