@@ -13,7 +13,7 @@ export function criptografar(req, res) {
   if ( mensagem == null ) {
     mensagem = "vrumvrum"
   }
-
+  console.log(mensagem)
 
   // Send a message into the channel where command was triggered from
   return res.send({
