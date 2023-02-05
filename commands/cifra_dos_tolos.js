@@ -25,7 +25,7 @@ export function descriptografar(req, res) {
     let chave = req.body.data.options[1].value
 
     let output = new Enter(mensagem, chave, true)
-    let output1 = output.encriptar_descriptar
+    let output1 = output.encriptar_descriptar()
 
     if (output1 == null) {
         return
@@ -35,7 +35,7 @@ export function descriptografar(req, res) {
     return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-            content:  `mensagem: ${output1}`
+            content:  `mensagem: ${output1}`0
         },
     });
 }
