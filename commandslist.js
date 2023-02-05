@@ -48,22 +48,21 @@ export const commandslist = [
     body: {
       name: "descriptografar",
       description: "Descriptografar uma mensagem usando a Cifra dos tolos",
-      option1: [
+      optionS: [
         {
           type: 3,
           name: "frase",
           description: "Frase a ser descriptografada",
           required: true,
         }
-      ],
-      option2: [
         {
           type: 3,
           name: "chave",
-          description: "chave do codigo",
+          description: "Chave para descriptografar",
           required: true,
         }
       ],
+      
       type: 1,
     },
     function: descriptografar
