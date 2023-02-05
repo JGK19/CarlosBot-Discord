@@ -31,7 +31,15 @@ export const commandslist = [
   {
     body: {
       name: "criptografar",
-      description: "criptografar uma mensagem usando a cifra dos tolos",
+      description: "Criptografar uma mensagem usando a Cifra do Tolo",
+      options: [
+        {
+          type: 3,
+          name: "frase",
+          description: "Frase a ser criptografada",
+          required: true,
+        }
+      ],
       type: 1,
     },
     function: criptografar

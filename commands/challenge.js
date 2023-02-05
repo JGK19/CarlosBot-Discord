@@ -14,8 +14,6 @@ export function challenge(req, res) {
   // User's object choice
   const objectName = req.body.data.options[0].value;
 
-  console.log(req.body)
-
   // Create active game using message ID as the game ID
   activeGames[id] = {
     id: userId,
