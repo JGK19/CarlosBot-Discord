@@ -1,10 +1,12 @@
 import { InteractionResponseType } from "discord-interactions";
 
 export function criptografar(req, res) {
+
+  let mensagem = req.body.data.options.value
   console.log('Request no /criptografar:')
   console.log(req.body)
   console.log('vrumvrum')
-  console.log(req.body.data.options)
+  console.log(req.body.data.options.value)
   console.log('vrumvrum')
 
 
@@ -12,7 +14,7 @@ export function criptografar(req, res) {
   return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
-    content: "vrumvrum",
+    content: mensagem,
     },
   });
 }
