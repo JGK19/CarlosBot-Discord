@@ -54,7 +54,7 @@ export const commandslist = [
           name: "frase",
           description: "Frase a ser descriptografada",
           required: true,
-        }
+        },
         {
           type: 3,
           name: "chave",
