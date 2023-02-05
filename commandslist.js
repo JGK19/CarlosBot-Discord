@@ -30,8 +30,8 @@ export const commandslist = [
   },
   {
     body: {
-      name: "testando",
-      description: "tentando",
+      name: "criptografar",
+      description: "criptografar uma mensagem usando a cifra dos tolos",
       type: 1,
     },
     function: criptografar
