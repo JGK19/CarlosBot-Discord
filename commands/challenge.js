@@ -4,6 +4,9 @@ import {
   ButtonStyleTypes,
 } from "discord-interactions";
 
+// Store for in-progress games. In production, you'd want to use a DB
+export const activeGames = {};
+
 export function challenge(req, res) {
   // Interaction type and data
   const { type, id, data } = req.body;
