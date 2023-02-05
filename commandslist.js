@@ -48,7 +48,7 @@ export const commandslist = [
     body: {
       name: "descriptografar",
       description: "Descriptografar uma mensagem usando a Cifra dos tolos",
-      options1: [
+      options: [
         {
           type: 3,
           name: "frase",
