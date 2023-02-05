@@ -75,6 +75,8 @@ class Enter {
                 }
             }
         }
+        
+        console.log(result, key)
 
         if (key != "") { return result, key }
         return result
