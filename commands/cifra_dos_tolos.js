@@ -55,6 +55,9 @@ class Enter {
             for (let i = 0; i < this.mensagem.length; i++) {
                 lista.push(new Char(this.mensagem[i]));
             }
+
+            console.log(lista)
+
             return lista;
         } else {
             let count_key = 0;
