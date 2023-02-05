@@ -19,6 +19,19 @@ export function criptografar(req, res) {
     });
 }
 
+export function descriptografar(req, res) {
+
+
+
+    // Send a message into the channel where command was triggered from
+    return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+            content: "vrumvrum"
+        },
+    });
+}
+
 const keyboard = '1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
 const d = '0';
 const e = '1';
