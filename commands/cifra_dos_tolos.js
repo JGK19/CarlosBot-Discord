@@ -77,8 +77,9 @@ class Enter {
         }
 
         console.log(result, key)
+        let output = [result, key]
 
-        if (key != "") { return result, key }
+        if (key != "") { return output }
         return result
 
 
