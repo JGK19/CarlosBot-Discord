@@ -1,3 +1,5 @@
+import { InteractionResponseType } from "discord-interactions";
+
 export function criptografar(req, res) {
   console.log('Request no /criptografar:')
   console.log(req.body)
