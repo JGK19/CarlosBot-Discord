@@ -2,84 +2,84 @@ import { InteractionResponseType } from "discord-interactions";
 
 export function criptografar(req, res) {
 
-  let mensagem = new Enter(req.body.data.options[0].value)
-  output = mensagem.encriptar_descriptar()
+    let mensagem = new Enter(req.body.data.options[0].value)
+    output = mensagem.encriptar_descriptar()
 
-  if ( output == null ) {
-    return
-  }
+    if (output == null) {
+        return
+    }
 
-  // Send a message into the channel where command was triggered from
-  return res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: {
-    content: `codigo: ${output[0]} \nchave: ${output[1]}`
-    },
-  });
+    // Send a message into the channel where command was triggered from
+    return res.send({
+        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        data: {
+            content: `codigo: ${output[0]} \nchave: ${output[1]}`
+        },
+    });
 }
 
 const keyboard = '1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
 const d = '0';
 const e = '1';
 
-            
-            class Enter {
-  constructor(mensagem, key, cripted) {
-    this.mensagem = mensagem;
-    this.cripted = cripted || false;
-    this.key = key || null;
-  }
 
-  encriptar_descriptar() {
-    let lista = this.create_char_list();
-    return this.format(lista);
-  }
+class Enter {
+    constructor(mensagem, key, cripted) {
+        this.mensagem = mensagem;
+        this.cripted = cripted || false;
+        this.key = key || null;
+    }
 
-  create_char_list() {
-    let lista = [];
-    if (!this.cripted) {
-      for (let i = 0; i < this.mensagem.length; i++) {
-        lista.push(new Char(this.mensagem[i]));
-      }
-      return lista;
-    } else {
-      let count_key = 0;
-      for (let i = 0; i < this.mensagem.length; i++) {
-        if (this.mensagem[i] !== " ") {
-          lista.push(new Char(this.mensagem[i], true, this.key[count_key]));
-          count_key++;
+    encriptar_descriptar() {
+        let lista = this.create_char_list();
+        return this.format(lista);
+    }
+
+    create_char_list() {
+        let lista = [];
+        if (!this.cripted) {
+            for (let i = 0; i < this.mensagem.length; i++) {
+                lista.push(new Char(this.mensagem[i]));
+            }
+            return lista;
         } else {
-          lista.push(new Char(this.mensagem[i], true));
-        }
-      }
-      return lista;
-    }
-  }
-
-  format(char_list) {
-    let result = "";
-    let key = "";
-
-    if (this.cripted) {
-        for (let i of char_list) {
-        result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();
+            let count_key = 0;
+            for (let i = 0; i < this.mensagem.length; i++) {
+                if (this.mensagem[i] !== " ") {
+                    lista.push(new Char(this.mensagem[i], true, this.key[count_key]));
+                    count_key++;
+                } else {
+                    lista.push(new Char(this.mensagem[i], true));
+                }
+            }
+            return lista;
         }
     }
 
-    if (!this.cripted) {
-      for (let i of char_list) {
-        if (i.individual_key != null) {
-            result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();
-            if ( i.individual_key != null ) { key += i.individual_key }
+    format(char_list) {
+        let result = "";
+        let key = "";
+
+        if (this.cripted) {
+            for (let i of char_list) {
+                result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();
+            }
         }
-      }
+
+        if (!this.cripted) {
+            for (let i of char_list) {
+                if (i.individual_key != null) {
+                    result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();
+                    if (i.individual_key != null) { key += i.individual_key }
+                }
+            }
+        }
+
+        if (key != "") { return result, key }
+        return result
+
+
     }
-
-    if (key != "") {return result, key}
-    return result
-    
-
-  }
 }
 
 class Char {
@@ -154,9 +154,3 @@ class Char {
         }
     }
 }
-
-            enter = new Enter(string)
-            resultado = enter.encriptar_descriptar()
-        
-            return resultado
-        
