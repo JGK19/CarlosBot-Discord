@@ -1,3 +1,3 @@
-export function criptografar(req, res) => {
-
+export function criptografar(req, res) {
+    console.log('vrumvrum')
 }
