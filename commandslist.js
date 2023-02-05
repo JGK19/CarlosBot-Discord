@@ -1,5 +1,6 @@
 import { challenge, createCommandChoices } from "./commands/challenge.js";
 import { test } from "./commands/test.js";
+import { criptografar } from "./commands/cifra_dos_tolos.js"
 
 export const commandslist = [
   {
@@ -27,4 +28,12 @@ export const commandslist = [
     },
     function: challenge
   }
+  {
+    body: {
+      name: "criptografar uma mensagem",
+      description: "criptografa uma mensagem usando a cifra dos tolos",
+      type: 1,
+    },
+    function: criptografar
+  },
 ]
