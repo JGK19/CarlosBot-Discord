@@ -27,7 +27,7 @@ export const commandslist = [
       type: 1,
     },
     function: challenge
-  }
+  },
   {
     body: {
       name: "criptografar uma mensagem",
