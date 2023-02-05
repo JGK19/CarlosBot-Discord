@@ -10,6 +10,10 @@ export function criptografar(req, res) {
   console.log(req.body.data.options.value)
   console.log('vrumvrum')
 
+  if ( mensagem == null ) {
+    mensagem = "vrumvrum"
+  }
+
 
   // Send a message into the channel where command was triggered from
   return res.send({
