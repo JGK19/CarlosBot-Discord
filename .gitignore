@@ -1,4 +1,10 @@
+# Coisas do Glitch
 .glitchdotcom.json
 .node-gyp
 node_modules
+
+# Configurações do VSCode
 .vscode
+
+# Exemplos do Discord
+examples/
