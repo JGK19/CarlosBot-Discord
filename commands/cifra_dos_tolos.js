@@ -3,7 +3,7 @@ import { InteractionResponseType } from "discord-interactions";
 export function criptografar(req, res) {
 
     let mensagem = new Enter(req.body.data.options[0].value)
-    output = mensagem.encriptar_descriptar()
+    let output = mensagem.encriptar_descriptar()
 
     if (output == null) {
         return
