@@ -35,7 +35,7 @@ export function descriptografar(req, res) {
     return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-            content:  `mensagem: ${output1}`0
+            content:  `mensagem: ${output1}`
         },
     });
 }
