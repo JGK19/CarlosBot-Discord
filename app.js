@@ -41,7 +41,7 @@ app.post("/interactions", async function (req, res) {
     const { name } = data;
 
     commandslist.forEach(element => {
-      if (name === element.body.name) {
+      if (name === element.name) {
         element.function(req, res)
       }
     });
