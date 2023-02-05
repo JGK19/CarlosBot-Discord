@@ -8,7 +8,7 @@ export function criptografar(req, res) {
     if (output == null) {
         return
     }
-    console.log(output[0])
+    console.log(output)
 
     // Send a message into the channel where command was triggered from
     return res.send({
@@ -75,7 +75,7 @@ class Enter {
                 }
             }
         }
-        
+
         console.log(result, key)
 
         if (key != "") { return result, key }
