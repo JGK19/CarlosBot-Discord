@@ -56,8 +56,6 @@ class Enter {
                 lista.push(new Char(this.mensagem[i]));
             }
 
-            console.log(lista)
-
             return lista;
         } else {
             let count_key = 0;
@@ -80,7 +78,7 @@ class Enter {
         if (this.cripted) {
             for (let i of char_list) {
                 if (i.c_tolo !== " ") {result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();}
-                else { result += i.c_tolo }
+                else if (i.c_tolo === " ") { result += i.c_tolo }
             }
         }
 
@@ -89,7 +87,7 @@ class Enter {
                 if (i.individual_key != null) {
 
                     if (i.c_tolo !== " ") {result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();}
-                    else { result += i.c_tolo }
+                    else if ( ) { result += i.c_tolo }
 
                     if (i.individual_key != null) { key += i.individual_key }
                 }
