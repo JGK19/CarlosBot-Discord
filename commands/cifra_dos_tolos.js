@@ -6,6 +6,7 @@ export function criptografar(req, res) {
   console.log('Request no /criptografar:')
   console.log(req.body)
   console.log('vrumvrum')
+  console.log(req.body.data.options)
   console.log(req.body.data.options.value)
   console.log('vrumvrum')
 
