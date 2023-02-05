@@ -21,13 +21,21 @@ export function criptografar(req, res) {
 
 export function descriptografar(req, res) {
 
+    let mensagem = req.body.data.options[0].value
+    let chave = req.body.data.options[1].value
 
+    let output = new Enter(mensagem, chave, true)
+    let output1 = output.encriptar_descriptar
+
+    if (output1 == null) {
+        return
+    }
 
     // Send a message into the channel where command was triggered from
     return res.send({
         type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: {
-            content: "vrumvrum"
+            content:  `mensagem: ${output1}`
         },
     });
 }
