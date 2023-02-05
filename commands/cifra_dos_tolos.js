@@ -63,14 +63,16 @@ class Enter {
 
         if (this.cripted) {
             for (let i of char_list) {
-                result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();
+                if (i.c_tolo != " ") {result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();}
+                else { result += i.c_tolo }
             }
         }
 
         if (!this.cripted) {
             for (let i of char_list) {
                 if (i.individual_key != null) {
-                    result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();
+                    if (i.c_tolo != " ") {result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();}
+                    else { result += i.c_tolo }
                     if (i.individual_key != null) { key += i.individual_key }
                 }
             }
