@@ -2,7 +2,7 @@ import { InteractionResponseType } from "discord-interactions";
 
 export function criptografar(req, res) {
 
-  let mensagem = req.body.data.options.value
+  let mensagem = req.body.data.options
   console.log('Request no /criptografar:')
   console.log(req.body)
   console.log('vrumvrum')
