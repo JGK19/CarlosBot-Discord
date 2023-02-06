@@ -2,6 +2,7 @@ import {
   InteractionResponseType,
   MessageComponentTypes,
   ButtonStyleTypes,
+  InteractionResponseFlags,
 } from "discord-interactions";
 
 // Store for in-progress games. In production, you'd want to use a DB
