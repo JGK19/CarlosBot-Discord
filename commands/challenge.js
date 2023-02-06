@@ -200,7 +200,7 @@ export async function selectchoice(req, res, gameId) {
   if (activeGames[gameId]) {
     // Get user ID and object choice for responding user
     const userId = req.body.member.user.id;
-    const objectName = data.values[0];
+    const objectName = req.body.data.values[0];
     // Calculate result from helper function
     const resultStr = getResult(activeGames[gameId], {
       id: userId,

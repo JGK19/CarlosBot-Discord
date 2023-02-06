@@ -27,7 +27,7 @@ export function applicationcommand(req, res) {
  */
 export function messagecomponent(req, res) {
   // custom_id set in payload when sending message component
-  const componentId = data.custom_id;
+  const componentId = req.body.data.custom_id;
 
   componentslist.forEach(element => {
     if (componentId.startsWith(element.idprefix)) {
