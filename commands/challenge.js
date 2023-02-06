@@ -4,7 +4,7 @@ import {
   ButtonStyleTypes,
   InteractionResponseFlags,
 } from "discord-interactions";
-import { DiscordRequest } from "../utils";
+import { DiscordRequest } from "../utils.js";
 
 // Store for in-progress games. In production, you'd want to use a DB
 export const activeGames = {};
