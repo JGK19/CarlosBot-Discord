@@ -9,7 +9,7 @@ import { DiscordRequest, getRandomEmoji } from "../utils.js";
 // Store for in-progress games. In production, you'd want to use a DB
 export const activeGames = {};
 
-export function challenge(req, res) {
+export function main(req, res) {
   // Interaction type and data
   const { id } = req.body;
   const userId = req.body.member.user.id;

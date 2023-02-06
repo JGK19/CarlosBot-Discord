@@ -1,13 +1,13 @@
-import { acceptbutton, challenge, createCommandChoices, selectchoice } from "./commands/challenge.js";
-import { test } from "./commands/test.js";
-import { criptografar, descriptografar } from "./commands/cifra_dos_tolos.js";
+import challenge from "./commands/challenge.js";
+import test from "./commands/test.js";
+import cifraDosTolos from "./commands/cifraDosTolos.js";
 
 export const commandslist = [
   {
     name: "test",
     description: "Basic guild command",
     type: 1,
-    function: test,
+    function: test.main,
   },
   {
     name: "challenge",
@@ -18,11 +18,11 @@ export const commandslist = [
         name: "object",
         description: "Pick your object",
         required: true,
-        choices: createCommandChoices(),
+        choices: challenge.createCommandChoices(),
       },
     ],
     type: 1,
-    function: challenge,
+    function: challenge.main,
   },
   {
     name: "criptografar",
@@ -36,7 +36,7 @@ export const commandslist = [
       },
     ],
     type: 1,
-    function: criptografar,
+    function: cifraDosTolos.criptografar,
   },
   {
     name: "descriptografar",
@@ -57,17 +57,17 @@ export const commandslist = [
     ],
 
     type: 1,
-    function: descriptografar,
+    function: cifraDosTolos.descriptografar,
   },
 ];
 
 export const componentslist = [
   {
     idprefix: "accept_button_",
-    function: acceptbutton,
+    function: cifraDosTolos.acceptbutton,
   },
   {
     idprefix: "select_choice_",
-    function: selectchoice,
+    function: cifraDosTolos.selectchoice,
   },
 ];

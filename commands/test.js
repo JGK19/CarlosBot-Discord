@@ -1,7 +1,7 @@
 import { InteractionResponseType } from "discord-interactions";
 import { getRandomEmoji } from "../utils.js";
 
-export function test(req, res) {
+export function main(req, res) {
   // Send a message into the channel where command was triggered from
   return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
