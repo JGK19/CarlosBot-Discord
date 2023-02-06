@@ -12,7 +12,6 @@ import {
 } from "./utils.js";
 import { HasGuildCommands } from "./install.js";
 import { commandslist } from "./commandslist.js";
-import { activeGames, getResult, getShuffledOptions } from "./commands/challenge.js";
 import { applicationcommand, messagecomponent, ping } from "./interactions.js";
 
 // Create an express app

@@ -1,4 +1,4 @@
-import { commandslist, componentslist } from "./commandslist";
+import { commandslist, componentslist } from "./commandslist.js";
 
 /**
  * Handle verification requests
