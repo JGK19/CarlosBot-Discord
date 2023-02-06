@@ -1,190 +1,183 @@
 import { InteractionResponseType } from "discord-interactions";
 
 export function criptografar(req, res) {
+  const mensagem = new Enter(req.body.data.options[0].value);
+  const output = mensagem.encriptar_descriptar();
 
-    let mensagem = new Enter(req.body.data.options[0].value)
-    let output = mensagem.encriptar_descriptar()
+  if (output == null) {
+    return;
+  }
+  console.log(output);
 
-    if (output == null) {
-        return
-    }
-    console.log(output)
-
-    // Send a message into the channel where command was triggered from
-    return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-            content: `codigo: ${output[0]} \nchave: ${output[1]}`
-        },
-    });
+  // Send a message into the channel where command was triggered from
+  return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: {
+      content: `codigo: ${output[0]} \nchave: ${output[1]}`,
+    },
+  });
 }
 
 export function descriptografar(req, res) {
+  const mensagem = req.body.data.options[0].value;
+  const chave = req.body.data.options[1].value;
 
-    let mensagem = req.body.data.options[0].value
-    let chave = req.body.data.options[1].value
+  const output = new Enter(mensagem, chave, true);
+  const output1 = output.encriptar_descriptar();
 
-    let output = new Enter(mensagem, chave, true)
-    let output1 = output.encriptar_descriptar()
+  if (output1 == null) {
+    return;
+  }
 
-    if (output1 == null) {
-        return
-    }
-
-    // Send a message into the channel where command was triggered from
-    return res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-        data: {
-            content:  `mensagem: ${output1}`
-        },
-    });
+  // Send a message into the channel where command was triggered from
+  return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: {
+      content: `mensagem: ${output1}`,
+    },
+  });
 }
 
-const keyboard = '1234567890QWERTYUIOPASDFGHJKLZXCVBNM';
-const d = '0';
-const e = '1';
-
+const keyboard = "1234567890QWERTYUIOPASDFGHJKLZXCVBNM";
+const d = "0";
+const e = "1";
 
 class Enter {
-    constructor(mensagem, key, cripted) {
-        this.mensagem = mensagem;
-        this.cripted = cripted || false;
-        this.key = key || null;
-    }
+  constructor(mensagem, key, cripted) {
+    this.mensagem = mensagem;
+    this.cripted = cripted || false;
+    this.key = key || null;
+  }
 
-    encriptar_descriptar() {
-        let lista = this.create_char_list();
-        return this.format(lista);
-    }
+  encriptar_descriptar() {
+    const lista = this.create_char_list();
+    return this.format(lista);
+  }
 
-    create_char_list() {
-        let lista = [];
-        if (!this.cripted) {
-            for (let i = 0; i < this.mensagem.length; i++) {
-                lista.push(new Char(this.mensagem[i]));
-            }
+  create_char_list() {
+    const lista = [];
+    if (!this.cripted) {
+      for (let i = 0; i < this.mensagem.length; i++) {
+        lista.push(new Char(this.mensagem[i]));
+      }
 
-            return lista;
+      return lista;
+    } else {
+      let countKey = 0;
+      for (let i = 0; i < this.mensagem.length; i++) {
+        if (this.mensagem[i] !== " ") {
+          lista.push(new Char(this.mensagem[i], this.key[countKey], true));
+          countKey++;
         } else {
-            let count_key = 0;
-            for (let i = 0; i < this.mensagem.length; i++) {
-                if (this.mensagem[i] !== " ") {
-                    lista.push(new Char(this.mensagem[i], this.key[count_key], true));
-                    count_key++;
-                } else {
-                    lista.push(new Char(this.mensagem[i], true));
-                }
-            }
-            return lista;
+          lista.push(new Char(this.mensagem[i], true));
         }
+      }
+      return lista;
+    }
+  }
+
+  format(charList) {
+    let result = "";
+    let key = "";
+
+    if (this.cripted) {
+      for (const i of charList) {
+        if (i.c_tolo !== " ") { result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase(); } else
+        if (i.c_tolo === " ") { result += i.c_tolo; }
+      }
     }
 
-    format(char_list) {
-        let result = "";
-        let key = "";
+    if (!this.cripted) {
+      for (const i of charList) {
+        if (i.c_tolo !== " ") { result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase(); } else
+        if (i.c_tolo === " ") { result += i.c_tolo; }
 
-        if (this.cripted) {
-            for (let i of char_list) {
-                if (i.c_tolo !== " ") {result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();}
-                else if (i.c_tolo === " ") { result += i.c_tolo }
-            }
-        }
-
-        if (!this.cripted) {
-            for (let i of char_list) {
-                
-                if (i.c_tolo !== " ") {result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase();}
-                else if (i.c_tolo == " " ) { result += i.c_tolo }
-
-                if (i.individual_key != null) { key += i.individual_key }
-                
-            }
-        }
-
-        console.log(result, key)
-        let output = [result, key]
-
-        if (key != "") { return output }
-        return result
-
-
+        if (i.individual_key != null) { key += i.individual_key; }
+      }
     }
+
+    console.log(result, key);
+    const output = [result, key];
+
+    if (key !== "") { return output; }
+    return result;
+  }
 }
 
 class Char {
-    constructor(c, key = null, cripted = false) {
-        this.c = c;
-        this.cripted = cripted;
-        this.c_tolo = null;
-        this.individual_key = key;
+  constructor(c, key = null, cripted = false) {
+    this.c = c;
+    this.cripted = cripted;
+    this.c_tolo = null;
+    this.individual_key = key;
 
-        this.position = this.findPosition(this.c, keyboard);
+    this.position = this.findPosition(this.c, keyboard);
 
-        if (this.c.toUpperCase() === this.c) {
-            this.capital = true;
-        } else {
-            this.capital = false;
-        }
-
-        if (this.c !== " ") {
-            if (!this.cripted) {
-                this.cifra(keyboard);
-            } else {
-                this.decifra(keyboard);
-            }
-        } else {
-            this.c_tolo = " ";
-        }
+    if (this.c.toUpperCase() === this.c) {
+      this.capital = true;
+    } else {
+      this.capital = false;
     }
 
-    findPosition(c, lista) {
-        for (let i = 0; i < lista.length; i++) {
-            if (c.toUpperCase() === lista[i]) {
-                return i;
-            }
-        }
+    if (this.c !== " ") {
+      if (!this.cripted) {
+        this.cifra(keyboard);
+      } else {
+        this.decifra(keyboard);
+      }
+    } else {
+      this.c_tolo = " ";
     }
+  }
 
-    cifra(alphabet) {
-        const choice = Math.floor(Math.random() * 2);
-        let key = null;
-
-        if (this.position !== null) {
-            switch (choice) {
-                case 0:
-                    this.position = this.position - 1;
-                    key = d;
-                    break;
-                case 1:
-                    this.position = this.position + 1;
-                    key = e;
-                    break;
-            }
-            if (this.position === keyboard.length) {
-                this.position = 0;
-            }
-
-            this.c_tolo = alphabet[this.position];
-            this.individual_key = key;
-        }
+  findPosition(c, lista) {
+    for (let i = 0; i < lista.length; i++) {
+      if (c.toUpperCase() === lista[i]) {
+        return i;
+      }
     }
+  }
 
-    decifra(alphabet) {
-        console.log("decifrando")
-        console.log(d)
-        console.log(this.individual_key)
+  cifra(alphabet) {
+    const choice = Math.floor(Math.random() * 2);
+    let key = null;
 
-        if (this.individual_key !== null) {
-            if (this.individual_key === d) {
-                console.log("deschavendo")
-                this.position = this.position + 1;
-            }
-            if (this.individual_key === e) {
-                this.position = this.position - 1;
-            }
+    if (this.position !== null) {
+      switch (choice) {
+        case 0:
+          this.position = this.position - 1;
+          key = d;
+          break;
+        case 1:
+          this.position = this.position + 1;
+          key = e;
+          break;
+      }
+      if (this.position === keyboard.length) {
+        this.position = 0;
+      }
 
-            this.c_tolo = alphabet[this.position];
-            this.individual_key = null;
-        }
+      this.c_tolo = alphabet[this.position];
+      this.individual_key = key;
     }
+  }
+
+  decifra(alphabet) {
+    console.log("decifrando");
+    console.log(d);
+    console.log(this.individual_key);
+
+    if (this.individual_key !== null) {
+      if (this.individual_key === d) {
+        console.log("deschavendo");
+        this.position = this.position + 1;
+      }
+      if (this.individual_key === e) {
+        this.position = this.position - 1;
+      }
+
+      this.c_tolo = alphabet[this.position];
+      this.individual_key = null;
+    }
+  }
 }

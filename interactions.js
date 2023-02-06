@@ -1,3 +1,4 @@
+import { InteractionResponseType } from "discord-interactions";
 import { commandslist, componentslist } from "./commandslist.js";
 
 /**
@@ -16,7 +17,7 @@ export function applicationcommand(req, res) {
 
   commandslist.forEach(element => {
     if (name === element.name) {
-      return element.function(req, res)
+      return element.function(req, res);
     }
   });
 }
@@ -31,7 +32,7 @@ export function messagecomponent(req, res) {
 
   componentslist.forEach(element => {
     if (componentId.startsWith(element.idprefix)) {
-      return element.function(req, res, componentId.replace(element.idprefix, ""))
+      return element.function(req, res, componentId.replace(element.idprefix, ""));
     }
   });
 }
