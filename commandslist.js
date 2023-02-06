@@ -1,4 +1,4 @@
-import { challenge, createCommandChoices } from "./commands/challenge.js";
+import { acceptbutton, challenge, createCommandChoices, selectchoice } from "./commands/challenge.js";
 import { test } from "./commands/test.js";
 import { criptografar, descriptografar } from "./commands/cifra_dos_tolos.js"
 
@@ -58,5 +58,16 @@ export const commandslist = [
 
     type: 1,
     function: descriptografar
+  },
+]
+
+export const componentslist = [
+  {
+    idprefix: "accept_button_",
+    function: acceptbutton
+  },
+  {
+    idprefix: "select_choice_",
+    function: selectchoice
   },
 ]
