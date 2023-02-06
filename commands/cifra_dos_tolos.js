@@ -69,7 +69,7 @@ class Enter {
             let count_key = 0;
             for (let i = 0; i < this.mensagem.length; i++) {
                 if (this.mensagem[i] !== " ") {
-                    lista.push(new Char(this.mensagem[i], true, this.key[count_key]));
+                    lista.push(new Char(this.mensagem[i], this.key[count_key], true));
                     count_key++;
                 } else {
                     lista.push(new Char(this.mensagem[i], true));
