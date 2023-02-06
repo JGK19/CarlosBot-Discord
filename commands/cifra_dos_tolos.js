@@ -170,8 +170,10 @@ class Char {
     }
 
     decifra(alphabet) {
+        console.log("decifrando")
         if (this.individual_key !== null) {
             if (this.individual_key === d) {
+                console.log("deschavendo")
                 this.position = this.position + 1;
             }
             if (this.individual_key === e) {
