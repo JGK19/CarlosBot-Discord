@@ -7,7 +7,6 @@ export function criptografar(req, res) {
   if (output == null) {
     return;
   }
-  console.log(output);
 
   // Send a message into the channel where command was triggered from
   return res.send({
@@ -96,7 +95,6 @@ class Enter {
       }
     }
 
-    console.log(result, key);
     const output = [result, key];
 
     if (key !== "") { return output; }
@@ -163,13 +161,8 @@ class Char {
   }
 
   decifra(alphabet) {
-    console.log("decifrando");
-    console.log(d);
-    console.log(this.individual_key);
-
     if (this.individual_key !== null) {
       if (this.individual_key === d) {
-        console.log("deschavendo");
         this.position = this.position + 1;
       }
       if (this.individual_key === e) {
