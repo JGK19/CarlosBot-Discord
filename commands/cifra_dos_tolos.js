@@ -171,6 +171,9 @@ class Char {
 
     decifra(alphabet) {
         console.log("decifrando")
+        console.log(d)
+        console.log(this.individual_key)
+
         if (this.individual_key !== null) {
             if (this.individual_key === d) {
                 console.log("deschavendo")
