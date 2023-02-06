@@ -154,6 +154,9 @@ class Char {
       if (this.position === keyboard.length) {
         this.position = 0;
       }
+      if (this.position === -1) {
+        this.position = keyboard.length - 1;
+      }
 
       this.c_tolo = alphabet[this.position];
       this.individual_key = key;
