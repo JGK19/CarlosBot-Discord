@@ -112,15 +112,10 @@ class Char {
     this.position = null;
 
     for (let i = 0; i < keyboard.length; i++) {
-      console.log(keyboard[i], i);
-
       if (this.position == null) {
-        console.log(this.position);
         this.position = this.findPosition(this.c, keyboard[i]);
-        console.log(this.position);
         if (this.position !== null) {
           this.alphabet = i;
-          console.log(this.alphabet, i);
         }
       }
     }
@@ -133,7 +128,6 @@ class Char {
 
     if (this.c !== " ") {
       if (!this.cripted) {
-        console.log("CIFRANDO")
         this.cifra(keyboard[this.alphabet]);
       } else {
         this.decifra(keyboard[this.alphabet]);
@@ -153,7 +147,6 @@ class Char {
   }
 
   cifra(alphabet) {
-    console.log(alphabet, "alfabeto");
     const choice = Math.floor(Math.random() * 2);
     let key = null;
 
@@ -177,8 +170,6 @@ class Char {
 
       this.c_tolo = alphabet[this.position];
       this.individual_key = key;
-
-      console.log(this.c, this.c_tolo);
     }
   }
 
