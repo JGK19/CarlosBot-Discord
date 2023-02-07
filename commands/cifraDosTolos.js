@@ -169,6 +169,8 @@ class Char {
 
       this.c_tolo = alphabet[this.position];
       this.individual_key = key;
+
+      console.log(this.c, this.c_tolo);
     }
   }
 
