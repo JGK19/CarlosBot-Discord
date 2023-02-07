@@ -115,9 +115,12 @@ class Char {
       console.log(keyboard[i], i);
 
       if (this.position == null) {
+        console.log(this.position);
         this.position = this.findPosition(this.c, keyboard[i]);
+        console.log(this.position);
         if (this.position !== null) {
           this.alphabet = i;
+          console.log(this.alphabet, i);
         }
       }
     }
