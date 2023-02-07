@@ -140,6 +140,7 @@ class Char {
         return i;
       }
     }
+    return null;
   }
 
   cifra(alphabet) {
