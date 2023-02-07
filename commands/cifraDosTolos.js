@@ -109,13 +109,16 @@ class Char {
     this.c_tolo = null;
     this.individual_key = key;
     this.alphabet = null;
+    this.position = null;
 
     for (let i = 0; i < keyboard.length; i++) {
       console.log(keyboard[i], i);
 
-      this.position = this.findPosition(this.c, keyboard[i]);
-      if (this.position !== null) {
-        this.alphabet = i;
+      if (this.position == null) {
+        this.position = this.findPosition(this.c, keyboard[i]);
+        if (this.position !== null) {
+          this.alphabet = i;
+        }
       }
     }
 
@@ -147,6 +150,7 @@ class Char {
   }
 
   cifra(alphabet) {
+    console.log(alphabet);
     const choice = Math.floor(Math.random() * 2);
     let key = null;
 
