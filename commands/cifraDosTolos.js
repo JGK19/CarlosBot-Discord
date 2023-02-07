@@ -150,7 +150,7 @@ class Char {
   }
 
   cifra(alphabet) {
-    console.log(alphabet);
+    console.log(alphabet, "alfabeto");
     const choice = Math.floor(Math.random() * 2);
     let key = null;
 
