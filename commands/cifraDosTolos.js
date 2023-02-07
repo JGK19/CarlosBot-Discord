@@ -80,20 +80,8 @@ class Enter {
   }
 
   create_random_key() {
-    const choice = Math.floor(Math.random() * 2);
-    let key = null;
-
-    if (key === null) {
-      switch (choice) {
-        case 0:
-          key = d;
-          break;
-        case 1:
-          key = e;
-          break;
-      }
-      return key;
-    }
+    const key = Math.floor(Math.random() * 2);
+    return key;
   }
 
   format(charList) {
