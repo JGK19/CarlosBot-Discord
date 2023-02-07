@@ -37,7 +37,7 @@ export function descriptografar(req, res) {
   });
 }
 
-const keyboard = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"];
+const keyboard = ["1234567890", "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM"];
 const d = "0";
 const e = "1";
 
