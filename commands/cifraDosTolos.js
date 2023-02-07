@@ -110,7 +110,7 @@ class Char {
     this.individual_key = key;
     this.alphabet = null;
 
-    for (let i = 0; i <= keyboard.length; i++) {
+    for (let i = 0; i < keyboard.length; i++) {
       console.log(keyboard[i], i);
 
       this.position = this.findPosition(this.c, keyboard[i]);
