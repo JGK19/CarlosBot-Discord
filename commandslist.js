@@ -1,6 +1,6 @@
-import challenge from "./commands/challenge.js";
-import test from "./commands/test.js";
-import cifraDosTolos from "./commands/cifraDosTolos.js";
+import * as challenge from "./commands/challenge.js";
+import * as test from "./commands/test.js";
+import * as cifraDosTolos from "./commands/cifraDosTolos.js";
 
 export const commandslist = [
   {
