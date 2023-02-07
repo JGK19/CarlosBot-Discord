@@ -53,3 +53,7 @@ export function countChars(string) {
   }
   return count;
 }
+
+export function randomNumber(min, max) {
+  return Math.random() * (max - min) + min;
+}
