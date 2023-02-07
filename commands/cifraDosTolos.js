@@ -37,7 +37,7 @@ export function descriptografar(req, res) {
   });
 }
 
-const keyboard = "1234567890QWERTYUIOPASDFGHJKLZXCVBNM";
+const keyboard = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"];
 const d = "0";
 const e = "1";
 
@@ -108,8 +108,14 @@ class Char {
     this.cripted = cripted;
     this.c_tolo = null;
     this.individual_key = key;
+    this.alphabet = null;
 
-    this.position = this.findPosition(this.c, keyboard);
+    for (let i = 0; i <= keyboard.length; i++) {
+      this.position = this.findPosition(this.c, keyboard[i]);
+      if (this.position !== null) {
+        this.alphabet = i;
+      }
+    }
 
     if (this.c.toUpperCase() === this.c) {
       this.capital = true;
@@ -119,9 +125,9 @@ class Char {
 
     if (this.c !== " ") {
       if (!this.cripted) {
-        this.cifra(keyboard);
+        this.cifra(keyboard[this.alphabet]);
       } else {
-        this.decifra(keyboard);
+        this.decifra(keyboard[this.alphabet]);
       }
     } else {
       this.c_tolo = " ";
@@ -151,11 +157,11 @@ class Char {
           key = e;
           break;
       }
-      if (this.position === keyboard.length) {
+      if (this.position === alphabet.length) {
         this.position = 0;
       }
       if (this.position === -1) {
-        this.position = keyboard.length - 1;
+        this.position = alphabet.length - 1;
       }
 
       this.c_tolo = alphabet[this.position];
@@ -172,11 +178,11 @@ class Char {
         this.position = this.position - 1;
       }
 
-      if (this.position === keyboard.length) {
+      if (this.position === alphabet.length) {
         this.position = 0;
       }
       if (this.position === -1) {
-        this.position = keyboard.length - 1;
+        this.position = alphabet.length - 1;
       }
 
       this.c_tolo = alphabet[this.position];
