@@ -127,6 +127,7 @@ class Char {
 
     if (this.c !== " ") {
       if (!this.cripted) {
+        console.log("CIFRANDO")
         this.cifra(keyboard[this.alphabet]);
       } else {
         this.decifra(keyboard[this.alphabet]);
