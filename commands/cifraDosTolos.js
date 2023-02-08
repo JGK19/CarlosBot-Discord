@@ -8,7 +8,7 @@ export function criptografar(req, res) {
     const enter = new Enter(mensagem);
     enter.createKey(enter.numberChars);
     const output = enter.encriptar_descriptar();
-    output[1] = binaryToBase64(output[1]);
+    output[1] = utils.binaryToBase64(output[1]);
 
     if (output == null) {
       return;
@@ -23,7 +23,7 @@ export function criptografar(req, res) {
     });
   } else {
     let chave = req.body.data.options[1].value;
-    chave = base64ToBinary(chave);
+    chave = utils.base64ToBinary(chave);
     const enter = new Enter(mensagem, chave, false);
     const output = enter.encriptar_descriptar();
 
@@ -44,7 +44,7 @@ export function criptografar(req, res) {
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
   let chave = req.body.data.options[1].value;
-  chave = base64ToBinary(chave);
+  chave = utils.base64ToBinary(chave);
 
   const output = new Enter(mensagem, chave, true);
   const output1 = output.encriptar_descriptar();
