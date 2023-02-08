@@ -34,7 +34,27 @@ export function descriptografar(req, res) {
   return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
-      content: `mensagem: ${output1}`,
+      content: `mensagem desscriptografada: ${output1}`,
+    },
+  });
+}
+
+export function criptografarComChave(req, res) {
+  const mensagem = req.body.data.options[0].value;
+  const chave = req.body.data.options[1].value;
+
+  const output = new Enter(mensagem, chave, false);
+  const output1 = output.encriptar_descriptar();
+
+  if (output1 == null) {
+    return;
+  }
+
+  // Send a message into the channel where command was triggered from
+  return res.send({
+    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    data: {
+      content: `mensagem criptografada: ${output1}`,
     },
   });
 }
