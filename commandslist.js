@@ -70,10 +70,10 @@ export const commandslist = [
 export const componentslist = [
   {
     idprefix: "accept_button_",
-    function: cifraDosTolos.acceptbutton,
+    function: challenge.acceptbutton,
   },
   {
     idprefix: "select_choice_",
-    function: cifraDosTolos.selectchoice,
+    function: challenge.selectchoice,
   },
 ];
