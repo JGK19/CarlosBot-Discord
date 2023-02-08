@@ -58,3 +58,8 @@ export function binaryToBase64(binary) {
   const buffer = Buffer.from(binary, "binary");
   return buffer.toString("base64");
 }
+
+export function base64ToBinary(base64) {
+  const buffer = Buffer.from(base64, "base64");
+  return buffer.toString("binary");
+}
