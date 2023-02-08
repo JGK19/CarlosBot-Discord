@@ -1,18 +1,14 @@
 import express from "express";
-import {
-  InteractionType,
-} from "discord-interactions";
-import {
-  VerifyDiscordRequest,
-} from "./utils.js";
-import { HasGuildCommands } from "./install.js";
-import { commandslist } from "./commandslist.js";
-import { applicationcommand, messagecomponent, ping } from "./interactions.js";
+import discord from "discord-interactions";
+import utils from "./utils.js";
+import install from "./install.js";
+import lists from "./commandslist.js";
+import interactions from "./interactions.js";
 
 // Create an express app
 const app = express();
 // Parse request body and verifies incoming requests using discord-interactions package
-app.use(express.json({ verify: VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
+app.use(express.json({ verify: utils.VerifyDiscordRequest(process.env.PUBLIC_KEY) }));
 
 /**
  * Interactions endpoint URL where Discord will send HTTP requests
@@ -21,16 +17,16 @@ app.post("/interactions", async function(req, res) {
   // Interaction type and data
   const { type } = req.body;
 
-  if (type === InteractionType.PING) return ping(req, res);
+  if (type === discord.InteractionType.PING) return interactions.ping(req, res);
 
-  if (type === InteractionType.APPLICATION_COMMAND) return applicationcommand(req, res);
+  if (type === discord.InteractionType.APPLICATION_COMMAND) return interactions.applicationcommand(req, res);
 
-  if (type === InteractionType.MESSAGE_COMPONENT) return messagecomponent(req, res);
+  if (type === discord.InteractionType.MESSAGE_COMPONENT) return interactions.messagecomponent(req, res);
 });
 
 app.listen(3000, () => {
   console.log("Listening on port 3000");
 
   // Check if guild commands from commands.json are installed (if not, install them)
-  HasGuildCommands(process.env.APP_ID, process.env.GUILD_ID, commandslist);
+  install.HasGuildCommands(process.env.APP_ID, process.env.GUILD_ID, lists.commandslist);
 });

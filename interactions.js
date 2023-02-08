@@ -1,11 +1,11 @@
-import { InteractionResponseType } from "discord-interactions";
-import { commandslist, componentslist } from "./commandslist.js";
+import discord from "discord-interactions";
+import lists from "./commandslist.js";
 
 /**
  * Handle verification requests
  */
 export function ping(req, res) {
-  return res.send({ type: InteractionResponseType.PONG });
+  return res.send({ type: discord.InteractionResponseType.PONG });
 }
 
 /**
@@ -15,7 +15,7 @@ export function ping(req, res) {
 export function applicationcommand(req, res) {
   const { name } = req.body.data;
 
-  commandslist.forEach(element => {
+  lists.commandslist.forEach(element => {
     if (name === element.name) {
       return element.function(req, res);
     }
@@ -30,7 +30,7 @@ export function messagecomponent(req, res) {
   // custom_id set in payload when sending message component
   const componentId = req.body.data.custom_id;
 
-  componentslist.forEach(element => {
+  lists.componentslist.forEach(element => {
     if (componentId.startsWith(element.idprefix)) {
       return element.function(req, res, componentId.replace(element.idprefix, ""));
     }

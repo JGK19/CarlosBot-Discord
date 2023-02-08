@@ -1,9 +1,4 @@
-import {
-  InteractionResponseType,
-  MessageComponentTypes,
-  ButtonStyleTypes,
-  InteractionResponseFlags,
-} from "discord-interactions";
+import discord from "discord-interactions";
 import { DiscordRequest, getRandomEmoji } from "../utils.js";
 
 // Store for in-progress games. In production, you'd want to use a DB
@@ -23,20 +18,20 @@ export function main(req, res) {
   };
 
   return res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
       // Fetches a random emoji to send from a helper function
       content: `Rock papers scissors challenge from <@${userId}>`,
       components: [
         {
-          type: MessageComponentTypes.ACTION_ROW,
+          type: discord.MessageComponentTypes.ACTION_ROW,
           components: [
             {
-              type: MessageComponentTypes.BUTTON,
+              type: discord.MessageComponentTypes.BUTTON,
               // Append the game ID to use later on
               custom_id: `accept_button_${req.body.id}`,
               label: "Accept",
-              style: ButtonStyleTypes.PRIMARY,
+              style: discord.ButtonStyleTypes.PRIMARY,
             },
           ],
         },
@@ -171,17 +166,17 @@ export async function acceptbutton(req, res, gameId) {
   const endpoint = `webhooks/${process.env.APP_ID}/${req.body.token}/messages/${req.body.message.id}`;
   try {
     await res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
         content: "What is your object of choice?",
         // Indicates it'll be an ephemeral message
-        flags: InteractionResponseFlags.EPHEMERAL,
+        flags: discord.InteractionResponseFlags.EPHEMERAL,
         components: [
           {
-            type: MessageComponentTypes.ACTION_ROW,
+            type: discord.MessageComponentTypes.ACTION_ROW,
             components: [
               {
-                type: MessageComponentTypes.STRING_SELECT,
+                type: discord.MessageComponentTypes.STRING_SELECT,
                 // Append game ID
                 custom_id: `select_choice_${gameId}`,
                 options: getShuffledOptions(),
@@ -217,7 +212,7 @@ export async function selectchoice(req, res, gameId) {
     try {
       // Send results
       await res.send({
-        type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+        type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
         data: { content: resultStr },
       });
       // Update ephemeral message

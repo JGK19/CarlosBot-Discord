@@ -1,5 +1,5 @@
-import { InteractionResponseType } from "discord-interactions";
-import { countChars } from "../utils.js";
+import discord from "discord-interactions";
+import utils from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
@@ -15,7 +15,7 @@ export function criptografar(req, res) {
 
     // Send a message into the channel where command was triggered from
     return res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
         content: `mensagem criptografada: ${output[0]} \nchave da mensagem: ${output[1]}`,
       },
@@ -31,7 +31,7 @@ export function criptografar(req, res) {
 
     // Send a message into the channel where command was triggered from
     return res.send({
-      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
         content: `mensagem criptografada: ${output[0]}`,
       },
@@ -52,7 +52,7 @@ export function descriptografar(req, res) {
 
   // Send a message into the channel where command was triggered from
   return res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+    type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
       content: `mensagem descriptografada: ${output1}`,
     },
@@ -68,7 +68,7 @@ class Enter {
     this.mensagem = mensagem;
     this.cripted = cripted || false;
     this.key = key || null;
-    this.numberChars = countChars(mensagem);
+    this.numberChars = utils.countChars(mensagem);
   }
 
   encriptar_descriptar() {
