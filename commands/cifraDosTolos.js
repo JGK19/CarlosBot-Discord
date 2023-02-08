@@ -5,9 +5,9 @@ export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
 
   if (req.body.data.options.length !== 2) {
-    const mensagem = new Enter(req.body.data.options[0].value);
-    mensagem.createKey(mensagem.numberChars);
-    const output = mensagem.encriptar_descriptar();
+    const enter = new Enter(mensagem);
+    enter.createKey(enter.numberChars);
+    const output = enter.encriptar_descriptar();
 
     if (output == null) {
       return;
@@ -22,10 +22,10 @@ export function criptografar(req, res) {
     });
   } else {
     const chave = req.body.data.options[1].value;
-    const output = new Enter(mensagem, chave, false);
-    const output1 = output.encriptar_descriptar();
+    const enter = new Enter(mensagem, chave, false);
+    const output = enter.encriptar_descriptar();
 
-    if (output1 == null) {
+    if (output == null) {
       return;
     }
 
@@ -33,7 +33,7 @@ export function criptografar(req, res) {
     return res.send({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: `mensagem criptografada: ${output1}`,
+        content: `mensagem criptografada: ${output}`,
       },
     });
   }
