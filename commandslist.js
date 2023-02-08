@@ -25,14 +25,20 @@ export const commandslist = [
     function: challenge.main,
   },
   {
-    name: "criptografar_aleatorio",
-    description: "Criptografar uma mensagem usando a Cifra dos Tolos com uma chave aleatoria",
+    name: "criptografar",
+    description: "Criptografar uma mensagem usando a Cifra dos Tolos",
     options: [
       {
         type: 3,
         name: "frase",
         description: "Frase a ser criptografada",
         required: true,
+      },
+      {
+        type: 3,
+        name: "chave",
+        description: "Chave para criptografar",
+        required: false,
       },
     ],
     type: 1,
@@ -58,27 +64,6 @@ export const commandslist = [
 
     type: 1,
     function: cifraDosTolos.descriptografar,
-  },
-  {
-    name: "criptografar_com_chave",
-    description: "Criptografar uma mensagem usando a Cifra dos Tolos",
-    options: [
-      {
-        type: 3,
-        name: "frase",
-        description: "Frase a ser criptografada",
-        required: true,
-      },
-      {
-        type: 3,
-        name: "chave",
-        description: "Chave para criptografar",
-        required: true,
-      },
-    ],
-
-    type: 1,
-    function: cifraDosTolos.criptografarComChave,
   },
 ];
 

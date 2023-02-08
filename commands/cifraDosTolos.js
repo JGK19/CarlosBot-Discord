@@ -3,20 +3,39 @@ import { countChars } from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = new Enter(req.body.data.options[0].value);
-  mensagem.createKey(mensagem.numberChars);
-  const output = mensagem.encriptar_descriptar();
+  const chave = req.body.data.options[1].value;
 
-  if (output == null) {
-    return;
+  if (chave == null) {
+    mensagem.createKey(mensagem.numberChars);
+    const output = mensagem.encriptar_descriptar();
+
+    if (output == null) {
+      return;
+    }
+
+    // Send a message into the channel where command was triggered from
+    return res.send({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: `codigo: ${output[0]} \nchave: ${output[1]}`,
+      },
+    });
+  } else {
+    const output = new Enter(mensagem, chave, false);
+    const output1 = output.encriptar_descriptar();
+
+    if (output1 == null) {
+      return;
+    }
+
+    // Send a message into the channel where command was triggered from
+    return res.send({
+      type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
+      data: {
+        content: `mensagem criptografada: ${output1}`,
+      },
+    });
   }
-
-  // Send a message into the channel where command was triggered from
-  return res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: {
-      content: `codigo: ${output[0]} \nchave: ${output[1]}`,
-    },
-  });
 }
 
 export function descriptografar(req, res) {
@@ -35,26 +54,6 @@ export function descriptografar(req, res) {
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
       content: `mensagem desscriptografada: ${output1}`,
-    },
-  });
-}
-
-export function criptografarComChave(req, res) {
-  const mensagem = req.body.data.options[0].value;
-  const chave = req.body.data.options[1].value;
-
-  const output = new Enter(mensagem, chave, false);
-  const output1 = output.encriptar_descriptar();
-
-  if (output1 == null) {
-    return;
-  }
-
-  // Send a message into the channel where command was triggered from
-  return res.send({
-    type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
-    data: {
-      content: `mensagem criptografada: ${output1}`,
     },
   });
 }
