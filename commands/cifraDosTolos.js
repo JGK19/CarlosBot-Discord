@@ -4,7 +4,7 @@ import { countChars } from "../utils.js";
 export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
 
-  if (req.body.data.options.length === 2) {
+  if (req.body.data.options.length !== 2) {
     const mensagem = new Enter(req.body.data.options[0].value);
     mensagem.createKey(mensagem.numberChars);
     const output = mensagem.encriptar_descriptar();
