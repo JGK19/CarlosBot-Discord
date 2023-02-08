@@ -43,13 +43,3 @@ export function getRandomEmoji() {
   const emojiList = ["😭", "😄", "😌", "🤓", "😎", "😤", "🤖", "😶‍🌫️", "🌏", "📸", "💿", "👋", "🌊", "✨"];
   return emojiList[Math.floor(Math.random() * emojiList.length)];
 }
-
-export function countChars(string) {
-  let count = 0;
-  for (let i = 0; i < string.length; i++) {
-    if (string[i] !== " ") {
-      count = count + 1;
-    }
-  }
-  return count;
-}

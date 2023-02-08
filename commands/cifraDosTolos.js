@@ -57,11 +57,7 @@ class Enter {
     const lista = [];
     if (!this.cripted) {
       for (let i = 0; i < this.mensagem.length; i++) {
-        if (this.mensagem[i] !== " ") {
-          lista.push(new Char(this.mensagem[i], this.key[this.create_random_key], false));
-        } else {
-          lista.push(new Char(this.mensagem[i], null, false));
-        }
+        lista.push(new Char(this.mensagem[i]));
       }
 
       return lista;
@@ -76,23 +72,6 @@ class Enter {
         }
       }
       return lista;
-    }
-  }
-
-  create_random_key() {
-    const choice = Math.floor(Math.random() * 2);
-    let key = null;
-
-    if (key === null) {
-      switch (choice) {
-        case 0:
-          key = d;
-          break;
-        case 1:
-          key = e;
-          break;
-      }
-      return key;
     }
   }
 
@@ -168,15 +147,18 @@ class Char {
   }
 
   cifra(alphabet) {
-    const key = this.individual_key;
+    const choice = Math.floor(Math.random() * 2);
+    let key = null;
 
     if (this.position !== null) {
-      switch (key) {
+      switch (choice) {
         case 0:
           this.position = this.position - 1;
+          key = d;
           break;
         case 1:
           this.position = this.position + 1;
+          key = e;
           break;
       }
       if (this.position === alphabet.length) {
@@ -187,6 +169,7 @@ class Char {
       }
 
       this.c_tolo = alphabet[this.position];
+      this.individual_key = key;
     }
   }
 
