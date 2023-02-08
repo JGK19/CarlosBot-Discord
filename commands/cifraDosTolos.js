@@ -1,5 +1,5 @@
 import { InteractionResponseType } from "discord-interactions";
-import { randomNumber } from "../utils.js";
+import { randomNumber } from "utils.js";
 
 export function criptografar(req, res) {
   const mensagem = new Enter(req.body.data.options[0].value);
