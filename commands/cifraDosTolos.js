@@ -3,6 +3,7 @@ import { countChars } from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = new Enter(req.body.data.options[0].value);
+  mensagem.createKey(mensagem.numberChars);
   const output = mensagem.encriptar_descriptar();
 
   if (output == null) {
@@ -48,10 +49,6 @@ class Enter {
     this.cripted = cripted || false;
     this.key = key || null;
     this.numberChars = countChars(mensagem);
-
-    if (!this.cripted) {
-      this.createKey(this.numberChars);
-    }
   }
 
   encriptar_descriptar() {
