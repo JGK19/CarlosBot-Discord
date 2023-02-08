@@ -25,7 +25,7 @@ export const commandslist = [
     function: challenge.main,
   },
   {
-    name: "criptografarAleatorio",
+    name: "criptografar_aleatorio",
     description: "Criptografar uma mensagem usando a Cifra dos Tolos com uma chave aleatoria",
     options: [
       {
@@ -60,7 +60,7 @@ export const commandslist = [
     function: cifraDosTolos.descriptografar,
   },
   {
-    name: "criptografarComChave",
+    name: "criptografar_com_chave",
     description: "Criptografar uma mensagem usando a Cifra dos Tolos",
     options: [
       {
