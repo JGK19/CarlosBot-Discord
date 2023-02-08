@@ -55,11 +55,13 @@ export function countChars(string) {
 }
 
 export function binaryToBase64(binary) {
-  const buffer = Buffer.from(binary, "binary");
+  const buffer = Buffer.alloc(1);
+  buffer.writeInt8(parseInt(binary, 2), 0);
   return buffer.toString("base64");
 }
 
 export function base64ToBinary(base64) {
   const buffer = Buffer.from(base64, "base64");
-  return buffer.toString("binary");
+  const int8 = buffer.readInt8(0);
+  return int8.toString(2).padStart(8, "0");
 }
