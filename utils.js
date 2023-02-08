@@ -53,3 +53,8 @@ export function countChars(string) {
   }
   return count;
 }
+
+export function binaryToBase64(binary) {
+  const buffer = Buffer.from(binary, "binary");
+  return buffer.toString("base64");
+}

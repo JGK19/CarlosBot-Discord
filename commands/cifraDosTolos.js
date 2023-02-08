@@ -85,7 +85,7 @@ class Enter {
           lista.push(new Char(this.mensagem[i], this.key[countKey], false));
           countKey++;
         } else {
-          lista.push(new Char(this.mensagem[i], false));
+          lista.push(new Char(this.mensagem[i], null, false));
         }
       }
       return lista;
@@ -96,7 +96,7 @@ class Enter {
           lista.push(new Char(this.mensagem[i], this.key[countKey], true));
           countKey++;
         } else {
-          lista.push(new Char(this.mensagem[i], true));
+          lista.push(new Char(this.mensagem[i], null, true));
         }
       }
       return lista;
