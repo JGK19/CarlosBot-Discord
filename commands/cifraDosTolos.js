@@ -141,8 +141,6 @@ class Enter {
         if (i.c_tolo !== " ") { result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase(); } else
         if (i.c_tolo === " ") { result += i.c_tolo; }
 
-        console.log(i.c, i.c_tolo, i.individual_key);
-
         if (i.individual_key != null) { key += i.individual_key; }
       }
     }
@@ -214,7 +212,6 @@ class Char {
       }
 
       this.c_tolo = alphabet[this.position];
-      this.individual_key = null;
     }
   }
 
