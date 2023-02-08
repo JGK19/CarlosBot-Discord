@@ -54,7 +54,7 @@ export function descriptografar(req, res) {
   return res.send({
     type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
-      content: `mensagem desscriptografada: ${output1}`,
+      content: `mensagem descriptografada: ${output1}`,
     },
   });
 }
