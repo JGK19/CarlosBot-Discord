@@ -1,4 +1,5 @@
 import { InteractionResponseType } from "discord-interactions";
+import { countChars } from "../utils";
 
 export function criptografar(req, res) {
   const mensagem = new Enter(req.body.data.options[0].value);
@@ -46,6 +47,11 @@ class Enter {
     this.mensagem = mensagem;
     this.cripted = cripted || false;
     this.key = key || null;
+    this.numberChars = countChars(mensagem);
+
+    if (!this.cripted) {
+      this.createKey(this.numberChars);
+    }
   }
 
   encriptar_descriptar() {
@@ -73,6 +79,28 @@ class Enter {
       }
       return lista;
     }
+  }
+
+  createKey(x) {
+    let finalKey = "";
+
+    for (let i = 0; i < x; i++) {
+      const choice = Math.floor(Math.random() * 2);
+      let key = null;
+
+      switch (choice) {
+        case 0:
+          this.position = this.position - 1;
+          key = d;
+          break;
+        case 1:
+          this.position = this.position + 1;
+          key = e;
+          break;
+      }
+      finalKey = finalKey + key;
+    }
+    this.key = finalKey;
   }
 
   format(charList) {
@@ -147,20 +175,14 @@ class Char {
   }
 
   cifra(alphabet) {
-    const choice = Math.floor(Math.random() * 2);
-    let key = null;
-
-    if (this.position !== null) {
-      switch (choice) {
-        case 0:
-          this.position = this.position - 1;
-          key = d;
-          break;
-        case 1:
-          this.position = this.position + 1;
-          key = e;
-          break;
+    if (this.individual_key !== null) {
+      if (this.individual_key === d) {
+        this.position = this.position - 1;
       }
+      if (this.individual_key === e) {
+        this.position = this.position + 1;
+      }
+
       if (this.position === alphabet.length) {
         this.position = 0;
       }
@@ -169,7 +191,7 @@ class Char {
       }
 
       this.c_tolo = alphabet[this.position];
-      this.individual_key = key;
+      this.individual_key = null;
     }
   }
 
