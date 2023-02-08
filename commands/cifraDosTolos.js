@@ -2,10 +2,10 @@ import { InteractionResponseType } from "discord-interactions";
 import { countChars } from "../utils.js";
 
 export function criptografar(req, res) {
-  const mensagem = new Enter(req.body.data.options[0].value);
-  const chave = req.body.data.options[1].value;
+  const mensagem = req.body.data.options[0].value;
 
-  if (chave == null) {
+  if (req.body.data.options[1].value == null) {
+    const mensagem = new Enter(req.body.data.options[0].value);
     mensagem.createKey(mensagem.numberChars);
     const output = mensagem.encriptar_descriptar();
 
@@ -21,6 +21,7 @@ export function criptografar(req, res) {
       },
     });
   } else {
+    const chave = req.body.data.options[1].value;
     const output = new Enter(mensagem, chave, false);
     const output1 = output.encriptar_descriptar();
 
