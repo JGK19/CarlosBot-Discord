@@ -17,7 +17,7 @@ export function criptografar(req, res) {
     return res.send({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: `codigo: ${output[0]} \nchave: ${output[1]}`,
+        content: `mensagem criptografada: ${output[0]} \nchave da mensagem: ${output[1]}`,
       },
     });
   } else {
@@ -33,7 +33,7 @@ export function criptografar(req, res) {
     return res.send({
       type: InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
-        content: `mensagem criptografada: ${output}`,
+        content: `mensagem criptografada: ${output[0]}`,
       },
     });
   }
@@ -147,8 +147,7 @@ class Enter {
 
     const output = [result, key];
 
-    if (key !== "") { return output; }
-    return result;
+    return output;
   }
 }
 
