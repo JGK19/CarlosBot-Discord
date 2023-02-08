@@ -62,10 +62,15 @@ class Enter {
   create_char_list() {
     const lista = [];
     if (!this.cripted) {
+      let countKey = 0;
       for (let i = 0; i < this.mensagem.length; i++) {
-        lista.push(new Char(this.mensagem[i]));
+        if (this.mensagem[i] !== " ") {
+          lista.push(new Char(this.mensagem[i], this.key[countKey], false));
+          countKey++;
+        } else {
+          lista.push(new Char(this.mensagem[i], false));
+        }
       }
-
       return lista;
     } else {
       let countKey = 0;
