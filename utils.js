@@ -1,5 +1,5 @@
 import fetch from "node-fetch";
-import discord from "discord-interactions";
+import * as discord from "discord-interactions";
 
 export function VerifyDiscordRequest(clientKey) {
   return function(req, res, buf, encoding) {

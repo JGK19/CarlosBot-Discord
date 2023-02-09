@@ -1,4 +1,4 @@
-import utils from "./utils.js";
+import * as utils from "./utils.js";
 
 export async function HasGuildCommands(appId, guildId, commands) {
   if (guildId === "" || appId === "") return;

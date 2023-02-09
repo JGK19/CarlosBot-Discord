@@ -1,9 +1,9 @@
 import express from "express";
-import discord from "discord-interactions";
-import utils from "./utils.js";
-import install from "./install.js";
-import lists from "./commandslist.js";
-import interactions from "./interactions.js";
+import * as discord from "discord-interactions";
+import * as utils from "./utils.js";
+import * as install from "./install.js";
+import * as lists from "./commandslist.js";
+import * as interactions from "./interactions.js";
 
 // Create an express app
 const app = express();

@@ -1,5 +1,5 @@
 import discord from "discord-interactions";
-import lists from "./commandslist.js";
+import * as lists from "./commandslist.js";
 
 /**
  * Handle verification requests

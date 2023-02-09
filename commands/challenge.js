@@ -1,5 +1,5 @@
 import discord from "discord-interactions";
-import { DiscordRequest, getRandomEmoji } from "../utils.js";
+import * as utils from "../utils.js";
 
 // Store for in-progress games. In production, you'd want to use a DB
 export const activeGames = {};
@@ -187,7 +187,7 @@ export async function acceptbutton(req, res, gameId) {
       },
     });
     // Delete previous message
-    await DiscordRequest(endpoint, { method: "DELETE" });
+    await utils.DiscordRequest(endpoint, { method: "DELETE" });
   } catch (err) {
     console.error("Error sending message:", err);
   }
@@ -216,10 +216,10 @@ export async function selectchoice(req, res, gameId) {
         data: { content: resultStr },
       });
       // Update ephemeral message
-      await DiscordRequest(endpoint, {
+      await utils.DiscordRequest(endpoint, {
         method: "PATCH",
         body: {
-          content: "Nice choice " + getRandomEmoji(),
+          content: "Nice choice " + utils.getRandomEmoji(),
           components: [],
         },
       });

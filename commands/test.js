@@ -1,5 +1,5 @@
 import discord from "discord-interactions";
-import utils from "../utils.js";
+import * as utils from "../utils.js";
 
 export function main(req, res) {
   // Send a message into the channel where command was triggered from

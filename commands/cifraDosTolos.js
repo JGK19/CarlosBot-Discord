@@ -1,5 +1,5 @@
 import discord from "discord-interactions";
-import utils from "../utils.js";
+import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
