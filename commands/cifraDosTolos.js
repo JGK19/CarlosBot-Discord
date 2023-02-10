@@ -6,7 +6,7 @@ export function criptografar(req, res) {
 
   if (req.body.data.options.length !== 2) {
     const enter = new Enter(mensagem);
-    enter.createKey(enter.numberChars);
+    enter.createKey(utils.closest8Multiple(enter.numberChars));
     const output = enter.encriptar_descriptar();
     output[1] = utils.binaryToBase64(output[1]);
 

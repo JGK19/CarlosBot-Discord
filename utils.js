@@ -65,3 +65,7 @@ export function base64ToBinary(base64) {
   const int8 = buffer.readInt8(0);
   return int8.toString(2).padStart(8, "0");
 }
+
+export function closest8Multiple(num) {
+  return Math.ceil(num / 8) * 8;
+}
