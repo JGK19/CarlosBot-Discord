@@ -23,7 +23,7 @@ export function criptografar(req, res) {
     });
   } else {
     let chave = req.body.data.options[1].value;
-    chave = utils.base64ToBinary(chave);
+    // chave = utils.base64ToBinary(chave); //
     const enter = new Enter(mensagem, chave, false);
     const output = enter.encriptar_descriptar();
 
