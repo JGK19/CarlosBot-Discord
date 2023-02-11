@@ -160,7 +160,7 @@ class Enter {
     }
 
     const output = [result, this.key];
-    if (key !== null) { console.log("RETORNANDO TEXTO E CHAVE"); return output; }
+    if (key !== null) { return output; }
     console.log(result);
     return result;
   }
