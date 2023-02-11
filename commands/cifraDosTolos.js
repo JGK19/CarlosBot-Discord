@@ -172,6 +172,7 @@ class Char {
   constructor(c, key = null, cripted = false) {
     const especial = "ÁÃÂÀÉÊÍÓÕÔÚÇ";
     this.isespecial = this.findPosition(c, especial);
+    console.log(this.isespecial);
     this.c = c;
     this.cripted = cripted;
     this.c_tolo = null;
