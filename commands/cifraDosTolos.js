@@ -48,7 +48,6 @@ export function descriptografar(req, res) {
 
   const output = new Enter(mensagem, chave, true);
   const output1 = output.encriptar_descriptar();
-  console.log(output1);
 
   if (output1 == null) {
     return;
@@ -58,7 +57,7 @@ export function descriptografar(req, res) {
   return res.send({
     type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
-      content: `mensagem descriptografada: ${output1}`,
+      content: `mensagem descriptografada: ${output1[0]}`,
     },
   });
 }
@@ -140,13 +139,11 @@ class Enter {
 
   format(charList) {
     let result = "";
-    let key = "";
 
     if (this.cripted) {
       for (const i of charList) {
         if (i.c_tolo !== " ") { result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase(); } else
         if (i.c_tolo === " ") { result += i.c_tolo; }
-        console.log(i.c_tolo);
       }
     }
 
