@@ -180,7 +180,7 @@ class Char {
     this.alphabet = null;
     this.position = null;
 
-    if (this.especial != null) {
+    if (this.isespecial != null) {
       console.log("SUBSTITUINDO");
       this.c = noespecial[this.especial];
     }
