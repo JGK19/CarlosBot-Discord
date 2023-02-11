@@ -72,7 +72,7 @@ class Enter {
     this.cripted = cripted || false;
     this.key = key || null;
     this.numberChars = utils.countChars(mensagem);
-    this.sizeKey = utils.countChars(key);
+    this.sizeKey = utils.countChars(key) || null;
 
     if (this.sizeKey < this.numberChars) {
       const sizeMissing = Math.ceil(this.numberChars - this.sizeKey);
