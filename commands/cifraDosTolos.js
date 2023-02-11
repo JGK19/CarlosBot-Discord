@@ -159,6 +159,7 @@ class Enter {
 
     const output = [result, this.key];
     if (key !== null) { return output; }
+    console.log(result);
     return result;
   }
 
