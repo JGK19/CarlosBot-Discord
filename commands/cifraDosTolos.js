@@ -145,6 +145,7 @@ class Enter {
       for (const i of charList) {
         if (i.c_tolo !== " ") { result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase(); } else
         if (i.c_tolo === " ") { result += i.c_tolo; }
+        console.log(i.c_tolo);
       }
     }
 
