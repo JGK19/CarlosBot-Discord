@@ -187,12 +187,11 @@ class Char {
     }
 
     if (this.isespecial != null) {
-      this.c = this.capital ? noespecial[this.isespecial] : noespecial[this.isespecial].toLowerCase;
+      this.c = this.capital ? noespecial[this.isespecial] : noespecial[this.isespecial].toLowerCase();
     }
 
     for (let i = 0; i < keyboard.length; i++) {
       if (this.position == null) {
-        console.log(this.c);
         this.position = this.findPosition(this.c, keyboard[i]);
         if (this.position !== null) {
           this.alphabet = i;
