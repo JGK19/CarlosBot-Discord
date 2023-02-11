@@ -72,7 +72,7 @@ class Enter {
     this.cripted = cripted || false;
     this.key = key || null;
     this.numberChars = utils.countChars(mensagem);
-    if (key !== null) {
+    if (this.key !== null) {
       console.log(key);
       console.log("TAMANHO DA CHAVE");
       this.sizeKey = utils.countChars(key);
