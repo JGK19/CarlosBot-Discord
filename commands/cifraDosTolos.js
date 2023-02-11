@@ -48,6 +48,7 @@ export function descriptografar(req, res) {
 
   const output = new Enter(mensagem, chave, true);
   const output1 = output.encriptar_descriptar();
+  console.log(output1);
 
   if (output1 == null) {
     return;
@@ -159,7 +160,7 @@ class Enter {
     }
 
     const output = [result, this.key];
-    if (key !== null) { return output; }
+    if (key !== null) { console.log("RETORNANDO TEXTO E CHAVE"); return output; }
     console.log(result);
     return result;
   }
