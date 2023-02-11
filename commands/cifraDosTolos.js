@@ -181,8 +181,11 @@ class Char {
     this.position = null;
 
     if (this.especial != null) {
+      console.log("SUBSTITUINDO");
       this.c = noespecial[this.especial];
     }
+
+    console.log(c, this.c, this.isespecial);
 
     for (let i = 0; i < keyboard.length; i++) {
       if (this.position == null) {
