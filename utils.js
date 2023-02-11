@@ -55,7 +55,7 @@ export function countChars(string) {
 }
 
 export function binaryToBase64(binary) {
-  const buffer = Buffer.alloc(1);
+  const buffer = Buffer.alloc(2);
   buffer.writeInt8(parseInt(binary, 2), 0);
   return buffer.toString("base64");
 }
@@ -63,7 +63,7 @@ export function binaryToBase64(binary) {
 export function base64ToBinary(base64) {
   const buffer = Buffer.from(base64, "base64");
   const int8 = buffer.readInt8(0);
-  return int8.toString(2).padStart(8, "0");
+  return int8.toString(2).padStart(16, "0");
 }
 
 export function closest8Multiple(num) {
