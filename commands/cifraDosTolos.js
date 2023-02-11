@@ -182,24 +182,31 @@ class Char {
     if (this.isespecial !== null) {
       switch (this.isespecial) {
         case (this.isespecial <= 3):
+          console.log("CARLOS");
           this.c = "A";
           break;
         case (this.isespecial < 3):
+          console.log("CARLOS");
           this.c = "A";
           break;
         case (this.isespecial > 3 && this.isespecial <= 5):
+          console.log("CARLOS");
           this.c = "E";
           break;
         case (this.isespecial === 6):
+          console.log("CARLOS");
           this.c = "I";
           break;
         case (this.isespecial > 6 && this.isespecial <= 9):
+          console.log("CARLOS");
           this.c = "O";
           break;
         case (this.isespecial === 10):
+          console.log("CARLOS");
           this.c = "U";
           break;
         case (this.isespecial === 11):
+          console.log("CARLOS");
           this.c = "C";
           break;
       }
