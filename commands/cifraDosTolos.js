@@ -171,7 +171,7 @@ class Enter {
 class Char {
   constructor(c, key = null, cripted = false) {
     const especial = "ÁÃÂÀÉÊÍÓÕÔÚÇ";
-    const noespecial = "AAAAEEIOOOUÇ";
+    const noespecial = "AAAAEEIOOOUC";
     this.isespecial = this.findPosition(c, especial);
     this.c = c;
     this.cripted = cripted;
