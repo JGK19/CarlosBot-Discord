@@ -152,12 +152,10 @@ class Enter {
       for (const i of charList) {
         if (i.c_tolo !== " ") { result += i.capital ? i.c_tolo : i.c_tolo.toLowerCase(); } else
         if (i.c_tolo === " ") { result += i.c_tolo; }
-
-        if (i.individual_key != null) { key += i.individual_key; }
       }
     }
 
-    const output = [result, key];
+    const output = [result, this.key];
 
     return output;
   }
