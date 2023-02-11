@@ -67,5 +67,5 @@ export function base64ToBinary(base64) {
 }
 
 export function closest8Multiple(num) {
-  return Math.ceil(num / 24) * 24;
+  return Math.ceil(num / 8) * 8;
 }
