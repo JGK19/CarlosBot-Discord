@@ -180,7 +180,7 @@ class Char {
     this.alphabet = null;
     this.position = null;
 
-    if (this.isespecial !== null) {
+    if (this.isespecial != null) {
       switch (this.isespecial) {
         case (this.isespecial <= 3):
           console.log("CARLOS");
