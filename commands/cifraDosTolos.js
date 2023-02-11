@@ -180,12 +180,15 @@ class Char {
     this.alphabet = null;
     this.position = null;
 
-    if (this.isespecial != null) {
-      console.log("SUBSTITUINDO");
-      this.c = noespecial[this.isespecial];
+    if (this.c.toUpperCase() === this.c) {
+      this.capital = true;
+    } else {
+      this.capital = false;
     }
 
-    console.log(c, this.c, this.isespecial);
+    if (this.isespecial != null) {
+      this.c = this.capital ? noespecial[this.isespecial] : noespecial[this.isespecial].toLowerCase;
+    }
 
     for (let i = 0; i < keyboard.length; i++) {
       if (this.position == null) {
@@ -194,12 +197,6 @@ class Char {
           this.alphabet = i;
         }
       }
-    }
-
-    if (this.c.toUpperCase() === this.c) {
-      this.capital = true;
-    } else {
-      this.capital = false;
     }
 
     if (this.c !== " ") {
