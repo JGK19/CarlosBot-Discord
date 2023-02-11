@@ -72,6 +72,13 @@ class Enter {
     this.cripted = cripted || false;
     this.key = key || null;
     this.numberChars = utils.countChars(mensagem);
+    this.sizeKey = utils.countChars(key);
+
+    if (this.sizeKey < this.numberChars) {
+      const sizeMissing = Math.ceil(this.numberChars - this.sizeKey);
+
+      this.key = this.formatKey(sizeMissing, this.key);
+    }
   }
 
   encriptar_descriptar() {
@@ -151,6 +158,14 @@ class Enter {
     const output = [result, key];
 
     return output;
+  }
+
+  formatKey(x, key) {
+    let result = "";
+    for (let i = 0; i < x; i++) {
+      result += key;
+    }
+    return result;
   }
 }
 
