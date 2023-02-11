@@ -182,7 +182,7 @@ class Char {
 
     if (this.isespecial != null) {
       console.log("SUBSTITUINDO");
-      this.c = noespecial[this.especial];
+      this.c = noespecial[this.isespecial];
     }
 
     console.log(c, this.c, this.isespecial);
