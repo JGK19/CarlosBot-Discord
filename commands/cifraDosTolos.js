@@ -62,7 +62,7 @@ export function descriptografar(req, res) {
   });
 }
 
-const keyboard = ["1234567890", "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM", "!@#$%¨&*()[]_-+=", "ÁÃÂÀÉÊÍÓÕÔÚÇ"];
+const keyboard = ["1234567890", "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM", "!@#$%¨&*()[]_-+="];
 const d = "0";
 const e = "1";
 
@@ -171,14 +171,18 @@ class Enter {
 class Char {
   constructor(c, key = null, cripted = false) {
     const especial = "ÁÃÂÀÉÊÍÓÕÔÚÇ";
+    const noespecial = "AAAAEEIOOOUÇ";
     this.isespecial = this.findPosition(c, especial);
-    console.log(this.isespecial);
     this.c = c;
     this.cripted = cripted;
     this.c_tolo = null;
     this.individual_key = key;
     this.alphabet = null;
     this.position = null;
+
+    if (this.especial != null) {
+      this.c = noespecial[this.especial];
+    }
 
     for (let i = 0; i < keyboard.length; i++) {
       if (this.position == null) {
