@@ -212,7 +212,7 @@ class Char {
 
   findPosition(c, lista) {
     for (let i = 0; i < lista.length; i++) {
-      if (c.toUpperCase() === lista[i]) {
+      if (this.c.toUpperCase() === lista[i]) {
         return i;
       }
     }
