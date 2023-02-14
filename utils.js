@@ -54,17 +54,17 @@ export function countChars(string) {
   return count;
 }
 
-/// export function binaryToBase64(binary) {
-///   const buffer = Buffer.alloc(1);
-///   buffer.writeInt8(parseInt(binary, 2), 0);
-///   return buffer.toString("base64");
-/// }
+// function to convert binary to base64
+export function binaryToBase64(binary) {
+  const base64 = Buffer.from(binary, "binary").toString("base64");
+  return base64;
+}
 
-/// export function base64ToBinary(base64) {
-///   const buffer = Buffer.from(base64, "base64");
-///   const int8 = buffer.readInt8(0);
-///   return int8.toString(2).padStart(8, "0");
-/// }
+// function to convert base64 to binary
+export function base64ToBinary(base64) {
+  const binary = Buffer.from(base64, "base64").toString("binary");
+  return binary;
+}
 
 export function closest8Multiple(num) {
   return Math.ceil(num / 8) * 8;
