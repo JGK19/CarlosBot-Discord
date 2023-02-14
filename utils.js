@@ -56,13 +56,15 @@ export function countChars(string) {
 
 // function to convert binary to base64
 export function binaryToBase64(binary) {
-  const base64 = Buffer.from(binary, "binary").toString("base64");
+  const buffer = Buffer.from(binary, 'binary');
+  const base64 = buffer.toString('base64');
   return base64;
 }
 
 // function to convert base64 to binary
 export function base64ToBinary(base64) {
-  const binary = Buffer.from(base64, "base64").toString("binary");
+  const buffer = Buffer.from(base64, 'base64');
+  const binary = buffer.toString('binary');
   return binary;
 }
 
