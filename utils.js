@@ -56,16 +56,26 @@ export function countChars(string) {
 
 // function to convert binary to base64
 export function binaryToBase64(binary) {
-  const buffer = Buffer.from(binary, 'binary');
-  const base64 = buffer.toString('base64');
-  return base64;
+  const paddedBinaryString = binary.padEnd(Math.ceil((binary.length / 8) * 8), "0");
+
+  const binaryData = new Uint8Array(paddedBinaryString.length / 8);
+  for (let i = 0; i < binaryData.length; i++) {
+    binaryData[i] = parseInt(paddedBinaryString.slice(i * 8, (i + 1) * 8), 2);
+  }
+
+  return btoa(String.fromCharCode.apply(null, binaryData));
 }
 
 // function to convert base64 to binary
 export function base64ToBinary(base64) {
-  const buffer = Buffer.from(base64, 'base64');
-  const binary = buffer.toString('binary');
-  return binary;
+  const binaryData = atob(base64);
+
+  let binaryString = "";
+  for (let i = 0; i < binaryData.length; i++) {
+    binaryString += binaryData.charCodeAt(i).toString(2).padStart(8, "0");
+  }
+
+  return binaryString;
 }
 
 export function closest8Multiple(num) {
