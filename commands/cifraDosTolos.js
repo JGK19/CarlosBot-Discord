@@ -62,7 +62,7 @@ export function descriptografar(req, res) {
   });
 }
 
-const keyboard = ["1234567890", "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM", "!@#$%¨&*()[]_-+="];
+const keyboard = ["1234567890", "QWERTYUIOP", "ASDFGHJKL", "ZXCVBNM", "'!@#$%¨&*()[]_-+="];
 const d = "0";
 const e = "1";
 
