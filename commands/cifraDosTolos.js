@@ -2,6 +2,7 @@ import discord from "discord-interactions";
 import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
+  console.log(req.body.data.options);
   const mensagem = req.body.data.options[1].value;
   let flag = req.body.data.options[0].value;
   if (flag === "sim") {
