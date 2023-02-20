@@ -3,7 +3,12 @@ import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
-  const flag = req.body.data.options[2].value;
+  let flag = req.body.data.options[2].value;
+  if (flag === "sim") {
+    flag = discord.InteractionResponseFlags.EPHEMERAL;
+  } else {
+    flag = null;
+  }
 
   if (req.body.data.options.length !== 3) {
     const enter = new Enter(mensagem);
@@ -46,7 +51,12 @@ export function criptografar(req, res) {
 
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
-  const flag = req.body.data.options[2].value;
+  let flag = req.body.data.options[2].value;
+  if (flag === "sim") {
+    flag = discord.InteractionResponseFlags.EPHEMERAL;
+  } else {
+    flag = null;
+  }
   let chave = req.body.data.options[1].value;
   chave = utils.base64ToBinary(chave);
 

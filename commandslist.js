@@ -48,11 +48,11 @@ export const commandslist = [
         choices: [
           {
             name: "sim",
-            value: true,
+            value: "sim",
           },
           {
             name: "não",
-            value: false,
+            value: "não",
           },
         ],
       },
@@ -75,6 +75,22 @@ export const commandslist = [
         name: "chave",
         description: "Chave para descriptografar",
         required: true,
+      },
+      {
+        type: 3,
+        name: "Secreto?",
+        description: "se sim a resposta só sera visivel para vc",
+        required: true,
+        choices: [
+          {
+            name: "sim",
+            value: "sim",
+          },
+          {
+            name: "não",
+            value: "não",
+          },
+        ],
       },
     ],
 
