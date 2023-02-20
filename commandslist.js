@@ -42,16 +42,16 @@ export const commandslist = [
       },
       {
         type: 3,
-        name: "Secreto",
+        name: "secreto",
         description: "se sim a resposta só sera visivel para vc",
         required: true,
         choices: [
           {
-            name: "Sim",
+            name: "sim",
             value: "sim",
           },
           {
-            name: "Não",
+            name: "não",
             value: "não",
           },
         ],
@@ -78,16 +78,16 @@ export const commandslist = [
       },
       {
         type: 3,
-        name: "Secreto",
+        name: "secreto",
         description: "se sim a resposta só sera visivel para vc",
         required: true,
         choices: [
           {
-            name: "Sim",
+            name: "sim",
             value: "sim",
           },
           {
-            name: "Não",
+            name: "não",
             value: "não",
           },
         ],
