@@ -47,11 +47,11 @@ export const commandslist = [
         required: true,
         choices: [
           {
-            name: "sim",
+            name: "Sim",
             value: "sim",
           },
           {
-            name: "não",
+            name: "Não",
             value: "não",
           },
         ],
@@ -83,11 +83,11 @@ export const commandslist = [
         required: true,
         choices: [
           {
-            name: "sim",
+            name: "Sim",
             value: "sim",
           },
           {
-            name: "não",
+            name: "Não",
             value: "não",
           },
         ],
