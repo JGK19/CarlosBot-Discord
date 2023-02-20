@@ -3,9 +3,9 @@ import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
-  const flag = discord.InteractionResponseFlags.EPHEMERAL;
+  const flag = req.body.data.options[2].value;
 
-  if (req.body.data.options.length !== 2) {
+  if (req.body.data.options.length !== 3) {
     const enter = new Enter(mensagem);
     enter.createKey(utils.closest8Multiple(enter.numberChars));
     const output = enter.encriptar_descriptar();
@@ -46,7 +46,7 @@ export function criptografar(req, res) {
 
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
-  const flag = discord.InteractionResponseFlags.EPHEMERAL
+  const flag = req.body.data.options[2].value;
   let chave = req.body.data.options[1].value;
   chave = utils.base64ToBinary(chave);
 

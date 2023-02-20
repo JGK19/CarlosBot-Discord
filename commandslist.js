@@ -40,6 +40,22 @@ export const commandslist = [
         description: "Chave para criptografar",
         required: false,
       },
+      {
+        type: 3,
+        name: "Secreto?",
+        description: "se sim a resposta só sera visivel para vc",
+        required: true,
+        choices: {
+          sim: {
+            name: "sim",
+            value: true,
+          },
+          nao: {
+            name: "não",
+            value: false,
+          },
+        },
+      },
     ],
     type: 1,
     function: cifraDosTolos.criptografar,
