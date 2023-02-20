@@ -2,9 +2,8 @@ import discord from "discord-interactions";
 import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
-  const mensagem = req.body.data.options[0].value;
-  console.log(req.body.data.options[2]);
-  let flag = req.body.data.options[2].value;
+  const mensagem = req.body.data.options[1].value;
+  let flag = req.body.data.options[0].value;
   if (flag === "sim") {
     flag = discord.InteractionResponseFlags.EPHEMERAL;
   } else {
@@ -30,7 +29,7 @@ export function criptografar(req, res) {
       },
     });
   } else {
-    let chave = req.body.data.options[1].value;
+    let chave = req.body.data.options[2].value;
     chave = utils.base64ToBinary(chave);
     const enter = new Enter(mensagem, chave, false);
     const output = enter.encriptar_descriptar();
@@ -51,14 +50,14 @@ export function criptografar(req, res) {
 }
 
 export function descriptografar(req, res) {
-  const mensagem = req.body.data.options[0].value;
-  let flag = req.body.data.options[2].value;
+  const mensagem = req.body.data.options[1].value;
+  let flag = req.body.data.options[0].value;
   if (flag === "sim") {
     flag = discord.InteractionResponseFlags.EPHEMERAL;
   } else {
     flag = null;
   }
-  let chave = req.body.data.options[1].value;
+  let chave = req.body.data.options[2].value;
   chave = utils.base64ToBinary(chave);
 
   const output = new Enter(mensagem, chave, true);
