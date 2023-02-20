@@ -3,7 +3,7 @@ import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
-  const flag = discord.InteractionResponseFlags.EPHEMERAL
+  const flag = discord.InteractionResponseFlags.EPHEMERAL;
 
   if (req.body.data.options.length !== 2) {
     const enter = new Enter(mensagem);
