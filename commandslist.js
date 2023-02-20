@@ -62,7 +62,7 @@ export const commandslist = [
   },
   {
     name: "descriptografar",
-    description: "Descriptografar uma mensagem usando a Cifra dos tolos",
+    description: "Descriptografar uma mensagem usando a Cifra dos Tolos",
     options: [
       {
         type: 3,
