@@ -3,6 +3,7 @@ import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
+  const flag = discord.InteractionResponseFlags.EPHEMERAL
 
   if (req.body.data.options.length !== 2) {
     const enter = new Enter(mensagem);
@@ -19,6 +20,7 @@ export function criptografar(req, res) {
       type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
         content: `mensagem criptografada: ${output[0]} \nchave da mensagem: ${output[1]}`,
+        flags: flag,
       },
     });
   } else {
@@ -36,6 +38,7 @@ export function criptografar(req, res) {
       type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
       data: {
         content: `mensagem criptografada: ${output[0]}`,
+        flags: flag,
       },
     });
   }
@@ -43,6 +46,7 @@ export function criptografar(req, res) {
 
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
+  const flag = discord.InteractionResponseFlags.EPHEMERAL
   let chave = req.body.data.options[1].value;
   chave = utils.base64ToBinary(chave);
 
@@ -58,6 +62,7 @@ export function descriptografar(req, res) {
     type: discord.InteractionResponseType.CHANNEL_MESSAGE_WITH_SOURCE,
     data: {
       content: `mensagem descriptografada: ${output1[0]}`,
+      flags: flag,
     },
   });
 }
