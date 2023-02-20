@@ -45,16 +45,16 @@ export const commandslist = [
         name: "Secreto?",
         description: "se sim a resposta só sera visivel para vc",
         required: true,
-        choices: {
-          sim: {
+        choices: [
+          {
             name: "sim",
             value: true,
           },
-          nao: {
+          {
             name: "não",
             value: false,
           },
-        },
+        ],
       },
     ],
     type: 1,
