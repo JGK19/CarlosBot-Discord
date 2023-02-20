@@ -42,7 +42,7 @@ export const commandslist = [
       },
       {
         type: 3,
-        name: "Secreto?",
+        name: "Secreto",
         description: "se sim a resposta só sera visivel para vc",
         required: true,
         choices: [
@@ -78,7 +78,7 @@ export const commandslist = [
       },
       {
         type: 3,
-        name: "Secreto?",
+        name: "Secreto",
         description: "se sim a resposta só sera visivel para vc",
         required: true,
         choices: [
