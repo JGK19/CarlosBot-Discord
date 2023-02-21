@@ -3,15 +3,15 @@ import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
   console.log(req.body.data.options);
-  const mensagem = req.body.data.options[1].value;
-  let flag = req.body.data.options[0].value;
-  if (flag === "sim") {
-    flag = discord.InteractionResponseFlags.EPHEMERAL;
-  } else {
+  const mensagem = req.body.data.options[0].value;
+  let flag = req.body.data.options[2].value;
+  if (flag === "não") {
     flag = null;
+  } else {
+    flag = discord.InteractionResponseFlags.EPHEMERAL;
   }
 
-  if (req.body.data.options.length !== 3) {
+  if (typeof req.body.data.options[1].value !== "undefined") {
     const enter = new Enter(mensagem);
     enter.createKey(utils.closest8Multiple(enter.numberChars));
     const output = enter.encriptar_descriptar();
@@ -30,7 +30,7 @@ export function criptografar(req, res) {
       },
     });
   } else {
-    let chave = req.body.data.options[2].value;
+    let chave = req.body.data.options[1].value;
     chave = utils.base64ToBinary(chave);
     const enter = new Enter(mensagem, chave, false);
     const output = enter.encriptar_descriptar();
@@ -51,14 +51,14 @@ export function criptografar(req, res) {
 }
 
 export function descriptografar(req, res) {
-  const mensagem = req.body.data.options[1].value;
-  let flag = req.body.data.options[0].value;
-  if (flag === "sim") {
-    flag = discord.InteractionResponseFlags.EPHEMERAL;
-  } else {
+  const mensagem = req.body.data.options[0].value;
+  let flag = req.body.data.options[2].value;
+  if (flag === "não") {
     flag = null;
+  } else {
+    flag = discord.InteractionResponseFlags.EPHEMERAL;
   }
-  let chave = req.body.data.options[2].value;
+  let chave = req.body.data.options[1].value;
   chave = utils.base64ToBinary(chave);
 
   const output = new Enter(mensagem, chave, true);

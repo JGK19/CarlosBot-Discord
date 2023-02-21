@@ -30,9 +30,21 @@ export const commandslist = [
     options: [
       {
         type: 3,
+        name: "frase",
+        description: "Frase a ser criptografada",
+        required: true,
+      },
+      {
+        type: 3,
+        name: "chave",
+        description: "Chave para criptografar",
+        required: false,
+      },
+      {
+        type: 3,
         name: "secreto",
         description: "se sim a resposta só sera visivel para vc",
-        required: true,
+        required: false,
         choices: [
           {
             name: "sim",
@@ -43,18 +55,6 @@ export const commandslist = [
             value: "não",
           },
         ],
-      },
-      {
-        type: 3,
-        name: "frase",
-        description: "Frase a ser criptografada",
-        required: true,
-      },
-      {
-        type: 3,
-        name: "chave",
-        description: "Chave para criptografar",
-        required: false,
       },
     ],
     type: 1,
@@ -66,9 +66,21 @@ export const commandslist = [
     options: [
       {
         type: 3,
+        name: "frase",
+        description: "Frase a ser descriptografada",
+        required: true,
+      },
+      {
+        type: 3,
+        name: "chave",
+        description: "Chave para descriptografar",
+        required: true,
+      },
+      {
+        type: 3,
         name: "secreto",
         description: "se sim a resposta só sera visivel para vc",
-        required: true,
+        required: false,
         choices: [
           {
             name: "sim",
@@ -79,18 +91,6 @@ export const commandslist = [
             value: "não",
           },
         ],
-      },
-      {
-        type: 3,
-        name: "frase",
-        description: "Frase a ser descriptografada",
-        required: true,
-      },
-      {
-        type: 3,
-        name: "chave",
-        description: "Chave para descriptografar",
-        required: true,
       },
     ],
 
