@@ -2,25 +2,22 @@ import discord from "discord-interactions";
 import * as utils from "../utils.js";
 
 export function criptografar(req, res) {
-  console.log(req.body.data.options);
-  const mensagem = req.body.data.options[0].value;
+  const mensagem = req.body.data.options.find((x) => x.name === "frase").value;
+  const secret = req.body.data.options.find((x) => x.name === "secreto").value;
+  let chave = req.body.data.options.find((x) => x.name === "chave").value;
   let flag = discord.InteractionResponseFlags.EPHEMERAL;
-  if (typeof req.body.data.options[2] !== "undefined") {
-    const secret = req.body.data.options[2].value;
+
+  if (typeof secret !== "undefined") {
     if (secret === "não") {
       flag = null;
     }
   }
 
-  if (typeof req.body.data.options[1] === "undefined") {
+  if (typeof chave === "undefined") {
     const enter = new Enter(mensagem);
     enter.createKey(utils.closest8Multiple(enter.numberChars));
     const output = enter.encriptar_descriptar();
     output[1] = utils.binaryToBase64(output[1]);
-
-    if (output == null) {
-      return;
-    }
 
     // Send a message into the channel where command was triggered from
     return res.send({
@@ -31,14 +28,9 @@ export function criptografar(req, res) {
       },
     });
   } else {
-    let chave = req.body.data.options[1].value;
     chave = utils.base64ToBinary(chave);
     const enter = new Enter(mensagem, chave, false);
     const output = enter.encriptar_descriptar();
-
-    if (output == null) {
-      return;
-    }
 
     // Send a message into the channel where command was triggered from
     return res.send({
@@ -52,23 +44,20 @@ export function criptografar(req, res) {
 }
 
 export function descriptografar(req, res) {
-  const mensagem = req.body.data.options[0].value;
+  const mensagem = req.body.data.options.find((x) => x.name === "frase").value;
+  const secret = req.body.data.options.find((x) => x.name === "secreto").value;
+  let chave = req.body.data.options.find((x) => x.name === "chave").value;
   let flag = discord.InteractionResponseFlags.EPHEMERAL;
-  if (typeof req.body.data.options[2] !== "undefined") {
-    const secret = req.body.data.options[2].value;
+  chave = utils.base64ToBinary(chave);
+
+  if (typeof secret !== "undefined") {
     if (secret === "não") {
       flag = null;
     }
   }
-  let chave = req.body.data.options[1].value;
-  chave = utils.base64ToBinary(chave);
 
   const output = new Enter(mensagem, chave, true);
   const output1 = output.encriptar_descriptar();
-
-  if (output1 == null) {
-    return;
-  }
 
   // Send a message into the channel where command was triggered from
   return res.send({
