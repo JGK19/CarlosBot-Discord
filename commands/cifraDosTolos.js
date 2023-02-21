@@ -14,7 +14,7 @@ export function criptografar(req, res) {
     }
   }
 
-  if (typeof req.body.data.options[1].value !== "undefined") {
+  if (typeof req.body.data.options[1] !== "undefined") {
     const enter = new Enter(mensagem);
     enter.createKey(utils.closest8Multiple(enter.numberChars));
     const output = enter.encriptar_descriptar();
