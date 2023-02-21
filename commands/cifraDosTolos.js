@@ -4,7 +4,7 @@ import * as utils from "../utils.js";
 export function criptografar(req, res) {
   const mensagem = req.body.data.options.find((x) => x.name === "frase").value;
   const secret = req.body.data.options.find((x) => x.name === "secreto").value;
-  let chave = req.body.data.options.find((x) => x.name === "chave").value;
+  let chave = req.body.data.options.find((x) => x.name === "chave");
   let flag = discord.InteractionResponseFlags.EPHEMERAL;
 
   if (typeof secret !== "undefined") {
@@ -28,6 +28,7 @@ export function criptografar(req, res) {
       },
     });
   } else {
+    chave = chave.value;
     chave = utils.base64ToBinary(chave);
     const enter = new Enter(mensagem, chave, false);
     const output = enter.encriptar_descriptar();
