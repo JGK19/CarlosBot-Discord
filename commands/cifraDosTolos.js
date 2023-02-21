@@ -5,7 +5,7 @@ export function criptografar(req, res) {
   console.log(req.body.data.options);
   const mensagem = req.body.data.options[0].value;
   let flag = null;
-  if (typeof req.body.data.options[2].value !== "undefined") {
+  if (typeof req.body.data.options[2] !== "undefined") {
     flag = req.body.data.options[2].value;
     if (flag === "não") {
       flag = null;
@@ -14,7 +14,7 @@ export function criptografar(req, res) {
     }
   }
 
-  if (typeof req.body.data.options[1].value !== "undefined") {
+  if (typeof req.body.data.options[1] !== "undefined") {
     const enter = new Enter(mensagem);
     enter.createKey(utils.closest8Multiple(enter.numberChars));
     const output = enter.encriptar_descriptar();
@@ -56,7 +56,7 @@ export function criptografar(req, res) {
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
   let flag = null;
-  if (typeof req.body.data.options[2].value !== "undefined") {
+  if (typeof req.body.data.options[2] !== "undefined") {
     flag = req.body.data.options[2].value;
     if (flag === "não") {
       flag = null;
