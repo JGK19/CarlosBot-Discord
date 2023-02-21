@@ -47,12 +47,13 @@ export function criptografar(req, res) {
 
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options.find((x) => x.name === "frase").value;
-  const secret = req.body.data.options.find((x) => x.name === "secreto").value;
+  let secret = req.body.data.options.find((x) => x.name === "secreto");
   let chave = req.body.data.options.find((x) => x.name === "chave").value;
   let flag = discord.InteractionResponseFlags.EPHEMERAL;
   chave = utils.base64ToBinary(chave);
 
   if (typeof secret !== "undefined") {
+    secret = secret.value;
     if (secret === "não") {
       flag = null;
     }
