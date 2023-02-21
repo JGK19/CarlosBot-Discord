@@ -4,11 +4,14 @@ import * as utils from "../utils.js";
 export function criptografar(req, res) {
   console.log(req.body.data.options);
   const mensagem = req.body.data.options[0].value;
-  let flag = req.body.data.options[2].value;
-  if (flag === "não") {
-    flag = null;
-  } else {
-    flag = discord.InteractionResponseFlags.EPHEMERAL;
+  let flag = null;
+  if (typeof req.body.data.options[2].value !== "undefined") {
+    flag = req.body.data.options[2].value;
+    if (flag === "não") {
+      flag = null;
+    } else {
+      flag = discord.InteractionResponseFlags.EPHEMERAL;
+    }
   }
 
   if (typeof req.body.data.options[1].value !== "undefined") {
@@ -52,11 +55,14 @@ export function criptografar(req, res) {
 
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
-  let flag = req.body.data.options[2].value;
-  if (flag === "não") {
-    flag = null;
-  } else {
-    flag = discord.InteractionResponseFlags.EPHEMERAL;
+  let flag = null;
+  if (typeof req.body.data.options[2].value !== "undefined") {
+    flag = req.body.data.options[2].value;
+    if (flag === "não") {
+      flag = null;
+    } else {
+      flag = discord.InteractionResponseFlags.EPHEMERAL;
+    }
   }
   let chave = req.body.data.options[1].value;
   chave = utils.base64ToBinary(chave);
