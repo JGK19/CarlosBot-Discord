@@ -55,7 +55,7 @@ export function criptografar(req, res) {
 
 export function descriptografar(req, res) {
   const mensagem = req.body.data.options[0].value;
-  let flag = null;
+  let flag = discord.InteractionResponseFlags.EPHEMERAL;
   if (typeof req.body.data.options[2] !== "undefined") {
     flag = req.body.data.options[2].value;
     if (flag === "não") {
