@@ -4,7 +4,7 @@ import * as utils from "../utils.js";
 export function criptografar(req, res) {
   console.log(req.body.data.options);
   const mensagem = req.body.data.options[0].value;
-  let flag = null;
+  let flag = discord.InteractionResponseFlags.EPHEMERAL;
   if (typeof req.body.data.options[2] !== "undefined") {
     flag = req.body.data.options[2].value;
     if (flag === "não") {
