@@ -7,6 +7,7 @@ export const commandslist = [
     name: "test",
     description: "Basic guild command",
     type: 1,
+    env: "global",
     function: test.main,
   },
   {
@@ -22,6 +23,7 @@ export const commandslist = [
       },
     ],
     type: 1,
+    env: "global",
     function: challenge.main,
   },
   {
@@ -58,6 +60,7 @@ export const commandslist = [
       },
     ],
     type: 1,
+    env: "guild",
     function: cifraDosTolos.criptografar,
   },
   {
@@ -95,6 +98,7 @@ export const commandslist = [
     ],
 
     type: 1,
+    env: "guild",
     function: cifraDosTolos.descriptografar,
   },
 ];
