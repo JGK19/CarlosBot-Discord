@@ -17,6 +17,9 @@ app.post("/interactions", async function(req, res) {
   // Interaction type and data
   const { type } = req.body;
 
+  console.log(req)
+  console.log(req.body)
+
   if (type === discord.InteractionType.PING) return interactions.ping(req, res);
 
   if (type === discord.InteractionType.APPLICATION_COMMAND) return interactions.applicationcommand(req, res);
