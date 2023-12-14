@@ -5,6 +5,7 @@ import * as lists from "./commandslist.js";
  * Handle verification requests
  */
 export function ping(req, res) {
+  console.log("carlos teste")
   return res.send({ type: discord.InteractionResponseType.PONG });
 }
 
