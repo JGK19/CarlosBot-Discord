@@ -1,3 +1,8 @@
+# Carlos Bot
+Projeto baseado no bot exemplo oferecido pelo Discord, reestruturado e com comandos novos desenvolvido por nós.
+
+[//]: # (Teste)
+
 # Getting Started app for Discord
 
 This project contains a basic rock-paper-scissors-style Discord app written in JavaScript, built for the [getting started guide](https://discord.com/developers/docs/getting-started).
