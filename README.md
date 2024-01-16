@@ -1,5 +1,6 @@
 # Carlos Bot
 Projeto baseado no bot exemplo oferecido pelo Discord, reestruturado e com comandos novos desenvolvido por nós.
+[//]: # (Teste)
 
 # Getting Started app for Discord
 
